@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+      http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+      http://www.directwebremoting.org/schema/spring-dwr 
+      http://www.directwebremoting.org/schema/spring-dwr-3.0.xsd  
+      http://www.springframework.org/schema/context  
+      http://www.springframework.org/schema/context/spring-context-3.1.xsd  
+      http://www.springframework.org/schema/mvc  
+      http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+ 
+	<!-- 注解扫描包 -->
+	<context:component-scan base-package="org.lh.controller" />
+ 
+	<!-- <context:component-scan /> -->
+	<!-- 扫描指定的包中的类上的注解，常用的注解有： -->
+	<!-- @Controller 声明Action组件 -->
+	<!-- @Service 声明Service组件 @Service("xxxService") -->
+	<!-- @Repository 声明Dao组件 -->
+	<!-- @Component 泛指组件, 当不好归类时. -->
+	<!-- @RequestMapping("/menu") 请求映射 -->
+	<!-- @Resource 用于注入，( j2ee提供的 ) 默认按名称装配，@Resource(name="beanName") -->
+	<!-- @Autowired 用于注入，(spring提供的) 默认按类型装配 -->
+	<!-- @Transactional( rollbackFor={Exception.class}) 事务管理 -->
+	<!-- @ResponseBody将内容或对象作为 HTTP 响应正文返回，并调用适合HttpMessageConverter的Adapter转换对象，写入输出流 -->
+	<!-- @Scope("prototype") 设定bean的作用域 -->
+ 
+ 	<!-- dwr -->
+ 	<!-- <dwr:controller id="dwrController" debug="false"/>
+	<dwr:annotation-config id="dwrAnnotationConfig" />
+  	<dwr:annotation-scan base-package="org.lh.dwr" scanDataTransferObject="true"/> -->
+  	
+  	<!-- Controller之前，需要借助于Spring提供的HandlerMapping定位到具体的Controller。 -->
+  	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+	  <property value="true" name="alwaysUseFullPath"></property> 
+	  <property name="mappings">
+	    <props> 
+	      <prop key="/dwr/**/*"><!--dwrController  --></prop>
+	    </props>
+	 </property> 
+	</bean>
+	
+	<!-- Auth拦截器 -->
+	<!-- <mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/admin/**"/>
+			<bean class="org.lh.web.AuthInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors> -->
+	
+ 	<!-- ViewResolver -->  
+ 	<!-- Spring提供的视图解析器（ViewResolver）在Web应用中查找View对象，从而将相应结果渲染给客户 -->
+    <bean  
+        class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />  
+        <property name="prefix" value="/WEB-INF/jsp/" />  
+        <property name="suffix" value=".jsp" />  
+    </bean> 
+   <!-- 异常信息 -->
+    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="wx.basic.util.CmsException">error</prop>
+			</props>
+		</property>
+	</bean>
+ 
+	<!-- 开启MVC注解,表示SpringMVC支持注解功能 做了很多事情，不包括添加自己定义的拦截器 -->
+	<mvc:annotation-driven />
+ 
+	<!-- 拦截器 -->
+	<!-- <mvc:interceptors> <bean class="com.phn.inteceptor" /> </mvc:interceptors> -->
+ 
+	<!-- 方案一 （二选一）表示不对静态资源如CSS、JS、HTML等进行拦截 -->
+	<!-- 当在web.xml 中 DispatcherServlet使用 <url-pattern>/</url-pattern> 映射时，能映射静态资源,使用默认的servlet来响应请求 -->
+	<!-- <mvc:default-servlet-handler /> -->
+ 
+	<!-- 方案二 （二选一） 静态资源映射 -->
+	<mvc:resources mapping="/jsp/**" location="/jsp/" />
+	<mvc:resources mapping="/css/**" location="/css/" />
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources mapping="/html/**" location="/WEB-INF/html/" />
+ 
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean
+					class="org.springframework.http.converter.StringHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>text/plain;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+ 
+ 
+	<!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean
+					class="org.springframework.http.converter.StringHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>text/plain;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+				<bean
+					class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>application/json;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+</beans>  
