@@ -1,5 +1,7 @@
 package wx.whsyh.controller;
 
-public class UserController {
+import wx.whsyh.model.User;
 
+public class UserController {
+	private User user;
 }
