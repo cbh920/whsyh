@@ -24,31 +24,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<tbody>
 					<tr class="head">
 						<th class="logo">
-							<img src="img/logo.jpg"/>
+							<img src="img/logo.png" style="width: 100%;height: 100%;"/>
 						</th>
 						<th>
 							<div class="head_right">
 								<div id="nav">
 									<ul>
-										<li><a id="nav0">åå</a></li>
-										<li><a id="nav1">è®¢å</a></li>
-										<li><a id="nav2">ä¼å</a></li>
-										<li><a id="nav3">åå®¹</a></li>
-										<li><a id="nav4">æé</a></li>
-										<li><a id="nav5">ç»è®¡</a></li>
-										<li><a id="nav6">ç³»ç»</a></li>
-										<li><a id="nav7">é¦é¡µ</a></li>
+										<li><a id="nav0">商品</a></li>
+										<li><a id="nav1">订单</a></li>
+										<li><a id="nav2">会员</a></li>
+										<li><a id="nav3">内容</a></li>
+										<li><a id="nav4">权限</a></li>
+										<li><a id="nav5">统计</a></li>
+										<li><a id="nav6">系统</a></li>
+										<li><a id="nav7">首页</a></li>
 									</ul>
 								</div>
 								<div class="link">
-									<a href="">å®æ¹ç½ç«</a>&nbsp;|&nbsp;
-									<a href="">äº¤æµè®ºå</a>&nbsp;|&nbsp;
-									<a href="">å³äºæä»¬</a>
+									<a href="">官方网站</a>&nbsp;|&nbsp;
+									<a href="">交流论坛</a>&nbsp;|&nbsp;
+									<a href="">关于我们</a>
 								</div>
 								<div class="link">
-									<strong>admin</strong>æ¨å¥½ï¼
-									<a href="">[è´¦å·è®¾ç½®]</a>
-									<a href="">[æ³¨é]</a>
+									<strong>admin</strong>您好！
+									<a href="">[账号设置]</a>
+									<a href="">[注销]</a>
 								</div>
 							</div>
 						</th>
@@ -56,52 +56,52 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<tr>
 						<td class="menu">
 							<dl class="product" style="display: block;"> 
-								<dt><a>ååç®¡ç</a></dt>
-								<dd><a class="good_manager">ååç®¡ç</a></dd>
-								<dd><a class="stock_manager">åºå­ç®¡ç</a></dd>
-								<dd><a href="#">åååæ°</a></dd>
-								<dd><a href="#">åååç±»</a></dd>
-								<dd><a href="#">ååå±æ§</a></dd>
-								<dd><a href="#">è§æ ¼ç®¡ç</a></dd>
-								<dd><a href="#">åçç®¡ç</a></dd>
-								<dd><a href="#">å°è´§éç¥</a></dd>
+								<dt><a>商品管理</a></dt>
+								<dd><a class="good_manager">商品管理</a></dd>
+								<dd><a class="stock_manager">库存管理</a></dd>
+								<dd><a href="#">商品参数</a></dd>
+								<dd><a href="#">商品分类</a></dd>
+								<dd><a href="#">商品属性</a></dd>
+								<dd><a href="#">规格管理</a></dd>
+								<dd><a href="#">品牌管理</a></dd>
+								<dd><a href="#">到货通知</a></dd>
 							</dl>
 							<dl class="order" style="display: none;"> 
-								<dt><a href="#">è®¢åååç®¡ç</a></dt>
-								<dd><a href="#">è®¢åç®¡ç</a></dd>
-								<dd><a href="#">åè´§ç®¡ç</a></dd>
-								<dd><a href="#">éè´§ç®¡ç</a></dd>
+								<dt><a href="#">订单商品管理</a></dt>
+								<dd><a href="#">订单管理</a></dd>
+								<dd><a href="#">发货管理</a></dd>
+								<dd><a href="#">退货管理</a></dd>
 							</dl>
 							<dl class="member" style="display: none;"> 
-								<dt><a href="#">ä¼åç®¡ç</a></dt>
-								<dd><a href="#">ä¼åç®¡ç</a></dd>
-								<dd><a href="#">ä¼åç­çº§</a></dd>
+								<dt><a href="#">会员管理</a></dt>
+								<dd><a href="#">会员管理</a></dd>
+								<dd><a href="#">会员等级</a></dd>
 								<dd><a href="#"></a></dd>
 							</dl>
 							<dl class="content" style="display: none;"> 
-								<dt><a href="#">æç« åç±»</a></dt>
-								<dd><a href="#">æç« åè¡¨</a></dd>
-								<dd><a href="#">æç« èªå¨åå¸</a></dd>
+								<dt><a href="#">文章分类</a></dt>
+								<dd><a href="#">文章列表</a></dd>
+								<dd><a href="#">文章自动发布</a></dd>
 								<dd><a href="#"></a></dd>
 							</dl>
 							<dl class="authorization" style="display: none;"> 
-								<dt><a href="#">æéç®¡ç</a></dt>
-								<dd><a href="#">ç®¡çååè¡¨</a></dd>
-								<dd><a href="#">ç®¡çåæ¥å¿</a></dd>
+								<dt><a href="#">权限管理</a></dt>
+								<dd><a href="#">管理员列表</a></dd>
+								<dd><a href="#">管理员日志</a></dd>
 								<dd><a href="#"></a></dd>
 							</dl>
 							<dl class="statistics" style="display: none;"> 
-								<dt><a href="#">ç»è®¡æ¥è¡¨</a></dt>
-								<dd><a href="#">å®¢æ·ç»è®¡</a></dd>
-								<dd><a href="#">è®¢åç»è®¡</a></dd>
-								<dd><a href="#">éå®æ¦åµ</a></dd>
-								<dd><a href="#">éå®æç»</a></dd>
-								<dd><a href="#">éå®æå</a></dd>
+								<dt><a href="#">统计报表</a></dt>
+								<dd><a href="#">客户统计</a></dd>
+								<dd><a href="#">订单统计</a></dd>
+								<dd><a href="#">销售概况</a></dd>
+								<dd><a href="#">销售明细</a></dd>
+								<dd><a href="#">销售排名</a></dd>
 							</dl>
 							<dl class="system" style="display: none;"> 
-								<dt><a href="#">ç³»ç»ç®¡ç</a></dt>
-								<dd><a href="#">ç³»ç»è®¾ç½®</a></dd>
-								<dd><a href="#">å°åºåè¡¨</a></dd>
+								<dt><a href="#">系统管理</a></dt>
+								<dd><a href="#">系统设置</a></dd>
+								<dd><a href="#">地区列表</a></dd>
 								<dd><a href="#"></a></dd>
 							</dl>
 						</td>

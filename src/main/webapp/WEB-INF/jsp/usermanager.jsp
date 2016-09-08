@@ -29,7 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="list">
 				<ul>
 					<li class="list_add">
-						添加
+						<a href="user_add.html">添加</a>
 					</li>
 					<li>删除</li>
 					<li>刷新</li>

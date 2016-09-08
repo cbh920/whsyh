@@ -21,15 +21,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<div class="content">
 				<dl>
-					<dt>商品选择</dt>
+					<dt>商品选择:</dt>
 					<dd><input type="text" name="text" class="text" value="" /></dd>
 				</dl>
 				<dl>
-					<dt>数量</dt>
+					<dt>数量:</dt>
 					<dd><input type="text" name="text" class="text" value="" /></dd>
 				</dl>
 				<dl>
-					<dt>备注</dt>
+					<dt>备注:</dt>
 					<dd><input type="text" name="text" class="text" value="" /></dd>
 				</dl>
 				<dl>

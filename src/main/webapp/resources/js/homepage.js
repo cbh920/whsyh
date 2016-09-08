@@ -28,3 +28,9 @@ $(document).ready(function(){
 		$(".menu_right").html("<iframe src='product_stock.html' width='' height='' frameborder='0'></iframe>");
 	});
 })
+$(document).ready(function(){
+	$(".user_manager").live("click",function(){
+		$(".menu_right").html("<iframe src='usermanager.html' width='' height='' frameborder='0'></iframe>");
+	});
+})
+
