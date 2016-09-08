@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<tbody>
 					<tr class="head">
 						<th class="logo">
-							<img src="img/logo.png" style="width: 100%;height: 100%;"/>
+							<img src="resources/img/logo.png" style="width: 100%;height: 100%;"/>
 						</th>
 						<th>
 							<div class="head_right">
@@ -106,7 +106,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</dl>
 						</td>
 						<td class="menu_right">
-							<iframe src="product.html" width="" height="" frameborder="0"></iframe>
+							<iframe src="product.jsp" width="" height="" frameborder="0"></iframe>
 						</td>
 					</tr>
 				</tbody>

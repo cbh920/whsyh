@@ -13,6 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<title></title>
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/product.css"/>
 		<script src="<%=request.getContextPath() %>/resources/js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="<%=request.getContextPath() %>/resources/js/product.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 		
 		</script>
@@ -61,7 +62,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<th><span>操作</span></th>
 						</tr>
 						<tr>
-							<td class="check"><input type="checkbox" id="ids" value="" /></th>
+							<td class="check"><input type="checkbox" name="checkbox" id="ids" value="" /></th>
 							<td ><span>20150211</span></td>
 							<td >
 								<span title="索尼 KDL-50W700B">

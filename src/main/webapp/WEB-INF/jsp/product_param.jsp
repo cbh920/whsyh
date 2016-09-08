@@ -5,43 +5,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html>
 	<head>
-		<head>
 		<meta charset="UTF-8">
 		<title></title>
-		
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/product.css"/>
 		<script src="<%=request.getContextPath() %>/resources/js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
-		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/user.css"/>
+		<script src="<%=request.getContextPath() %>/resources/js/product.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-$(document).ready(function(){
-	$("#selectAll").on("click",function(){
-		if($("#selectAll").attr("checked")=="checked"){
-			$("[name='checkbox']").attr("checked",'true');//全选
-		}else{
-			$("[name='checkbox']").removeAttr("checked");//取消全选
-		}
-	})
-})
+			
 		</script>
 	</head>
 	<body>
-					<div class="container">
+		<div class="container">
 			<div class="head">
 				<a>首页</a>》
-				<span>会员管理</span>
-				<span>(共140条记录)</span>
+				<span>属性列表</span>
+				<span>(共25条记录)</span>
 			</div>
 			<div class="list">
 				<ul>
 					<li class="list_add">
-						<a href="user_add.html">添加</a>
+						<a href="product_param_add.html">添加</a>
 					</li>
 					<li>删除</li>
 					<li>刷新</li>
-
+			
 					<select name="goods_page" class="goods_page">
 							<option value="1">每页显示</option>
 							<option value="2">10</option>
@@ -55,29 +45,25 @@ $(document).ready(function(){
 				<table id="listTable" cellspacing="0" cellpadding="0">
 					<tbody>
 						<tr>
-							<th class="check"><input type="checkbox" id="selectAll" value="" /></th>
-							<th ><a class="sort" name="name">用户名</a></th>
-							<th ><a class="sort" name="productCategory">会员等级</a></th>
-							<th ><a class="sort" name="price">Enail</a></th>
-							<th ><a class="sort" name="isMarketable">昵称</a></th>
-							<th ><a class="sort" name="createDate">创建日期</a></th>
+							<th class="check "><input type="checkbox" name="all_select" id="selectAll" value="" /></th>
+							<th ><a class="sort" >名称</a></th>
+							<th ><a class="sort" >绑定分类</a></th>
+							<th ><a class="sort" >可选项</a></th>
+							<th ><a class="sort" >排序</a></th>
 							<th><span>操作</span></th>
 						</tr>
 						<tr>
-							<td class="check"><input type="checkbox" name="checkbox" id="ids" value="" /></th>
-							<td ><span>xiaobaixiaobai</span></td>
-							<td ><span >VIP1</span></td>
-							<td ><span>123456789@163.com</span></td>
-							<td ><span>小白</span></td>
-							<td ><span>2016.09.07</span></td>
+							<td class="check" ><input type="checkbox" name="checkbox" id="ids" value="" /></th>
+							<td ><span>屏幕尺寸</span></td>
+							
+							<td ><span>手机</span></td>
+							<td ><span>3英寸以下 3-4英寸 4-5英寸 5-6英寸 6-7英寸 7-8英寸 8英寸以上 ...</span></td>
+							<td ><span>1</span></td>
 							<td ><a>[编辑]</a><a>[查看]</a></td>
 						</tr>
+						
 					</tbody>
 				</table>
-				
-				
-				
-				
 			</div>
 		</div>
 	</body>

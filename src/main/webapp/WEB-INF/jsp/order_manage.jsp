@@ -9,16 +9,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html>
 <html>
 	<head>
-		<head>
 		<meta charset="UTF-8">
 		<title></title>
-		
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/order1.css"/>
 		<script src="<%=request.getContextPath() %>/resources/js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
-		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/user.css"/>
 		<script type="text/javascript">
+
 $(document).ready(function(){
 	$("#selectAll").on("click",function(){
 		if($("#selectAll").attr("checked")=="checked"){
+//			alert("a");
 			$("[name='checkbox']").attr("checked",'true');//全选
 		}else{
 			$("[name='checkbox']").removeAttr("checked");//取消全选
@@ -28,20 +28,29 @@ $(document).ready(function(){
 		</script>
 	</head>
 	<body>
-					<div class="container">
+		<div class="container">
 			<div class="head">
 				<a>首页</a>》
-				<span>会员管理</span>
-				<span>(共140条记录)</span>
+				<span>订单列表</span>
+				<span>(共10条记录)</span>
 			</div>
 			<div class="list">
 				<ul>
 					<li class="list_add">
-						<a href="user_add.html">添加</a>
+						删除
 					</li>
-					<li>删除</li>
 					<li>刷新</li>
-
+					<select name="goods_select" class="goods_select">
+							<option value="1">订单筛选</option>
+							<option value="2">等待收款</option>
+							<option value="3">无需收款</option>
+							<option value="3">等待退款</option>
+							<option value="3">无需退款</option>
+							<option value="3">已分配库存</option>
+							<option value="3">未分配库存</option>
+							<option value="3">已过期</option>
+							<option value="3">未过期</option>
+					</select>
 					<select name="goods_page" class="goods_page">
 							<option value="1">每页显示</option>
 							<option value="2">10</option>
@@ -56,20 +65,31 @@ $(document).ready(function(){
 					<tbody>
 						<tr>
 							<th class="check"><input type="checkbox" id="selectAll" value="" /></th>
-							<th ><a class="sort" name="name">用户名</a></th>
-							<th ><a class="sort" name="productCategory">会员等级</a></th>
-							<th ><a class="sort" name="price">Enail</a></th>
-							<th ><a class="sort" name="isMarketable">昵称</a></th>
+							<th ><a class="sort" name="name">编号</a></th>
+							<th ><a class="sort" name="productCategory">订单金额</a></th>
+							<th ><a class="sort" name="price">会员</a></th>
+							<th ><a class="sort" name="isMarketable">收货人</a></th>
+							<th ><a class="sort" name="createDate">支付方式</a></th>
+							<th ><a class="sort" name="createDate">配送方式</a></th>
+							<th ><a class="sort" name="createDate">状态</a></th>
 							<th ><a class="sort" name="createDate">创建日期</a></th>
 							<th><span>操作</span></th>
 						</tr>
 						<tr>
-							<td class="check"><input type="checkbox" name="checkbox" id="ids" value="" /></th>
-							<td ><span>xiaobaixiaobai</span></td>
-							<td ><span >VIP1</span></td>
-							<td ><span>123456789@163.com</span></td>
-							<td ><span>小白</span></td>
-							<td ><span>2016.09.07</span></td>
+							<td class="check"><input type="checkbox"  name="checkbox" id="ids" value="" /></th>
+							<td ><span>11111111</span></td>
+							<td >
+								<span title="">
+									￥5287.28
+								</span>
+								<span class="promotion" title=""></span>
+							</td>
+							<td ><span>xy123321</span></td>
+							<td ><span>23123</span></td>
+							<td ><span>网上支付</span></td>
+							<td ><span>普通快递</span></td>
+							<td ><span>等待付款</span></td>
+							<td ><span>2016-09-08</span></td>
 							<td ><a>[编辑]</a><a>[查看]</a></td>
 						</tr>
 					</tbody>
