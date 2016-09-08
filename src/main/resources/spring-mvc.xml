@@ -13,7 +13,7 @@
       http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
  
 	<!-- 注解扫描包 -->
-	<context:component-scan base-package="org.lh.controller" />
+	<context:component-scan base-package="whsyh.controller" />
  
 	<!-- <context:component-scan /> -->
 	<!-- 扫描指定的包中的类上的注解，常用的注解有： -->
@@ -33,15 +33,15 @@
 	<dwr:annotation-config id="dwrAnnotationConfig" />
   	<dwr:annotation-scan base-package="org.lh.dwr" scanDataTransferObject="true"/> -->
   	
-  	<!-- Controller之前，需要借助于Spring提供的HandlerMapping定位到具体的Controller。 -->
+  	<!-- Controller之前，需要借助于Spring提供的HandlerMapping定位到具体的Controller。
   	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 	  <property value="true" name="alwaysUseFullPath"></property> 
 	  <property name="mappings">
 	    <props> 
-	      <prop key="/dwr/**/*"><!--dwrController  --></prop>
+	      <prop key="/dwr/**/*">dwrController </prop>
 	    </props>
 	 </property> 
-	</bean>
+	</bean> -->
 	
 	<!-- Auth拦截器 -->
 	<!-- <mvc:interceptors>
@@ -63,7 +63,7 @@
     <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<property name="exceptionMappings">
 			<props>
-				<prop key="wx.basic.util.CmsException">error</prop>
+				<prop key="basic.util.CmsException">error</prop>
 			</props>
 		</property>
 	</bean>
