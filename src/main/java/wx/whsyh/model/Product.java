@@ -4,12 +4,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="t_product")
 public class Product {
 	private int id;
 	private String coding;
+	private String name; 
 	private String product_type;
 	private String sale_price;
 	private String is_putaway;
@@ -28,6 +30,13 @@ public class Product {
 	}
 	public void setCoding(String coding) {
 		this.coding = coding;
+	}
+	@NotNull(message="商品名称不能为空")
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getProduct_type() {
 		return product_type;
@@ -53,11 +62,14 @@ public class Product {
 	public void setCreate_date(String create_date) {
 		this.create_date = create_date;
 	}
-	public Product(int id, String coding, String product_type,
+	
+	
+	public Product(int id, String coding, String name, String product_type,
 			String sale_price, String is_putaway, String create_date) {
 		super();
 		this.id = id;
 		this.coding = coding;
+		this.name = name;
 		this.product_type = product_type;
 		this.sale_price = sale_price;
 		this.is_putaway = is_putaway;

@@ -58,6 +58,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<tr>
 							<th class="check"><input type="checkbox" id="selectAll" value="" /></th>
 							<th ><a class="sort" name="name">编号</a></th>
+							<th ><a class="sort" name="product_name">名称</a></th>
 							<th ><a class="sort" name="productCategory">商品分类</a></th>
 							<th ><a class="sort" name="price">销售价</a></th>
 							<th ><a class="sort" name="isMarketable">是否上架</a></th>
@@ -68,15 +69,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<tr>
 							<td class="check"><input type="checkbox" name="checkbox" id="ids" value="" /></th>
 							<td ><span>${product.coding }</span></td>
+							<td ><span>${product.name }</span></td>
 							<td >
 								<span>
 									${product.product_type }
 								</span>
-								<span class="promotion">${product.sale_price }</span>
 							</td>
+							<td ><span>${product.sale_price }</span></td>
 							<td ><span>${product.is_putaway }</span></td>
 							<td ><span>${product.create_date }</span></td>
-							<td ><span>是</span></td>
 							<td ><a>[编辑]</a><a>[查看]</a></td>
 						</tr>
 						</c:forEach>

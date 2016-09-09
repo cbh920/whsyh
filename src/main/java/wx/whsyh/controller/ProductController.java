@@ -24,7 +24,6 @@ public class ProductController {
 	@RequestMapping("/products")
 	public String list(Model model)
 	{
-		System.out.println("hello");
 		model.addAttribute("datas", productService.findProducts());
 		return "/product";
 	}
