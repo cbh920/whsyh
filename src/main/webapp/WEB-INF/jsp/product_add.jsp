@@ -74,7 +74,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<dt>&nbsp;</dt>
 						<dd>
 							<input type="submit" class="button" value="确 定"> <input
-								type="button" class="button" value="返 回">
+								type="reset" class="button" value="重 置">
 						</dd>
 					</dl>
 				</div>
