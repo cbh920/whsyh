@@ -9,16 +9,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html>
 <html>
 	<head>
+		<base href="<%=basePath %>">
 		<meta charset="UTF-8">
 		<title></title>
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/product.css"/>
 		<script src="<%=request.getContextPath() %>/resources/js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="<%=request.getContextPath() %>/resources/js/product.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			$(document).ready(function(){
-				alert(${datas});
-			});
-			
 		</script>
 	</head>
 	<body>
@@ -31,7 +28,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="list">
 				<ul>
 					<li class="list_add">
-						<a href="product_add.html">添加</a>
+						<a href="product/add">添加</a>
+						
 					</li>
 					<li>删除</li>
 					<li>刷新</li>

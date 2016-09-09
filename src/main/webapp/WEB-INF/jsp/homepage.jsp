@@ -59,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<dt><a>商品管理</a></dt>
 								<dd><a class="good_manager">商品管理</a></dd>
 								<dd><a class="stock_manager">库存管理</a></dd>
-								<dd><a href="#">商品参数</a></dd>
+								<dd><a href="product/add">商品参数</a></dd>
 								<dd><a href="#">商品分类</a></dd>
 								<dd><a href="#">商品属性</a></dd>
 								<dd><a href="#">规格管理</a></dd>

@@ -16,7 +16,7 @@ import wx.whsyh.model.Product;
 public class ProductDao extends BaseDao<Product> implements ProductDaoI {
 
 	@Override
-	public Product add(Product t) {
+	public Product add(Product p) {
 		return null;
 	}
 
@@ -27,7 +27,7 @@ public class ProductDao extends BaseDao<Product> implements ProductDaoI {
 
 	@Override
 	public void delete(int id) {
-
+		this.delete(id);	
 	}
 
 	@Override
@@ -41,6 +41,12 @@ public class ProductDao extends BaseDao<Product> implements ProductDaoI {
 		Query query = session.createQuery("from Product");
 		return query.list();
 //		return this.getSession().createQuery("from Product").list();
+	}
+
+	@Override
+	public void addProduct(Product p) {
+		// TODO Auto-generated method stub
+		super.add(p);
 	}
 
 

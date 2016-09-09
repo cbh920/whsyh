@@ -29,5 +29,10 @@ public class ProductService implements ProductServiceI {
 	public List<Product> findProducts() {
 		return productDao.findProducts();
 	}
+
+	@Override
+	public void addProduct(Product p) {
+		productDao.addProduct(p);
+	}
 	
 }

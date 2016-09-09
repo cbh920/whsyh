@@ -8,4 +8,5 @@ import wx.whsyh.model.Product;
 public interface ProductDaoI extends BaseDaoI<Product> {
 	public List<Product> findProducts();
 	
+	public void addProduct(Product p);
 }
