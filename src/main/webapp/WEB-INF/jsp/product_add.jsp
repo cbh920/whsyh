@@ -71,6 +71,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</dd>
 					</dl>
 					<dl>
+						<dt>是否上架：</dt>
+						<dd>
+							<select name="is_putaway" class="productId">
+								<option value="是">是</option>
+								<option value="否">否</option>
+								
+							</select>
+						</dd>
+					</dl>
 						<dt>&nbsp;</dt>
 						<dd>
 							<input type="submit" class="button" value="确 定"> <input
