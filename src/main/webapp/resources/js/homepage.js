@@ -15,22 +15,33 @@ $(document).ready(function(){
 						}
 					})
 				}
-			})
+			});
 
+//商品管理页面跳转
 $(document).ready(function(){
 	$(".good_manager").live("click",function(){
-		$(".menu_right").html("<iframe src='product.html' width='' height='' frameborder='0'></iframe>");
+		$(".menu_right").html("<iframe src='product/products' width='' height='' frameborder='0'></iframe>");
 	});
-})
+});
 
 $(document).ready(function(){
 	$(".stock_manager").live("click",function(){
 		$(".menu_right").html("<iframe src='product_stock.html' width='' height='' frameborder='0'></iframe>");
 	});
-})
+});
 $(document).ready(function(){
 	$(".user_manager").live("click",function(){
 		$(".menu_right").html("<iframe src='usermanager.html' width='' height='' frameborder='0'></iframe>");
 	});
-})
+});
+
+
+//订单管理页面跳转
+$(document).ready(function(){
+	var lis=$(".order a");
+//	alert(lis.length);
+	$(lis[1]).live("click",function(){
+		$(".menu_right").html("<iframe src='order/orders' width='' height='' frameborder='0'></iframe>");
+	});
+});
 

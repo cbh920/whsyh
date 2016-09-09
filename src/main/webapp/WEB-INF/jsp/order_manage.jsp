@@ -24,7 +24,8 @@ $(document).ready(function(){
 			$("[name='checkbox']").removeAttr("checked");//取消全选
 		}
 	})
-})
+});
+
 		</script>
 	</head>
 	<body>
@@ -75,23 +76,23 @@ $(document).ready(function(){
 							<th ><a class="sort" name="createDate">创建日期</a></th>
 							<th><span>操作</span></th>
 						</tr>
+						
+						<c:forEach items="${orders }" var="order">
 						<tr>
 							<td class="check"><input type="checkbox"  name="checkbox" id="ids" value="" /></th>
-							<td ><span>11111111</span></td>
-							<td >
-								<span title="">
-									￥5287.28
-								</span>
-								<span class="promotion" title=""></span>
-							</td>
-							<td ><span>xy123321</span></td>
-							<td ><span>23123</span></td>
-							<td ><span>网上支付</span></td>
-							<td ><span>普通快递</span></td>
-							<td ><span>等待付款</span></td>
-							<td ><span>2016-09-08</span></td>
+							<td ><span>${order.coding }</span></td>
+							<td ><span>${order.money}</span></td>
+							<td ><span>${order.member}</span></td>
+							<td ><span>${order.receiver}</span></td>
+							<td ><span>${order.payment_method}</span></td>
+							<td ><span>${order.send_method}</span></td>
+							<td ><span>${order.state}</span></td>
+							<td ><span>${order.create_date}</span></td>
 							<td ><a>[编辑]</a><a>[查看]</a></td>
 						</tr>
+						</c:forEach>
+						
+						
 					</tbody>
 				</table>
 				
