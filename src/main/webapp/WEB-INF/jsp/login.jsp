@@ -29,7 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<dd><input type="text" name="password" id="password" value="" /></dd>
 					</dl>
 					<input type="submit" name="login" id="login" value="登入" />
-					
+					<a href="homepage.jsp">试试</a>
 				</form>
 				<div class="content_foot">
 					<span id="foget">

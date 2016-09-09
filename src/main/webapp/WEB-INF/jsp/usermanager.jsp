@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html>
 <html>
 	<head>
-		<head>
+		<base href="<%=basePath %>">
 		<meta charset="UTF-8">
 		<title></title>
 		
@@ -25,6 +25,7 @@ $(document).ready(function(){
 		}
 	})
 })
+
 		</script>
 	</head>
 	<body>
@@ -37,7 +38,7 @@ $(document).ready(function(){
 			<div class="list">
 				<ul>
 					<li class="list_add">
-						<a href="user_add.html">添加</a>
+						<a href="member/add">添加</a>
 					</li>
 					<li>删除</li>
 					<li>刷新</li>
@@ -63,15 +64,18 @@ $(document).ready(function(){
 							<th ><a class="sort" name="createDate">创建日期</a></th>
 							<th><span>操作</span></th>
 						</tr>
+						<c:forEach items="${members }" var="member">
 						<tr>
-							<td class="check"><input type="checkbox" name="checkbox" id="ids" value="" /></th>
-							<td ><span>xiaobaixiaobai</span></td>
-							<td ><span >VIP1</span></td>
-							<td ><span>123456789@163.com</span></td>
-							<td ><span>小白</span></td>
-							<td ><span>2016.09.07</span></td>
+							<td class="check"><input type="checkbox"  name="checkbox" id="ids" value="" /></th>
+							<td ><span>${member.name }</span></td>
+							<td ><span>${member.member_garde}</span></td>
+							<td ><span>${member.email}</span></td>
+							<td ><span>${member.nick_name}</span></td>
+							<td ><span>${member.create_date}</span></td>
 							<td ><a>[编辑]</a><a>[查看]</a></td>
 						</tr>
+						</c:forEach>
+						
 					</tbody>
 				</table>
 				

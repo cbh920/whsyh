@@ -44,4 +44,12 @@ $(document).ready(function(){
 		$(".menu_right").html("<iframe src='order/orders' width='' height='' frameborder='0'></iframe>");
 	});
 });
+//会员管理页面跳转
+$(document).ready(function(){
+	var lis=$(".member a");
+//	alert(lis.length);
+	$(lis[1]).live("click",function(){
+		$(".menu_right").html("<iframe src='member/members' width='' height='' frameborder='0'></iframe>");
+	});
+});
 

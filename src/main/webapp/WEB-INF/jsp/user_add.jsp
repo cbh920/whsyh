@@ -9,6 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
+		<base href="<%=basePath %>">
 		<meta charset="UTF-8">
 		<title></title>
 		<style class="css">
@@ -19,49 +20,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</style>
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/user_add.css"/>
 		<script src="<%=request.getContextPath() %>/resources/js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="<%=request.getContextPath() %>/resources/js/user_add.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			$(document).ready(function(){
-				var lis=$(".nav li");
-//				alert(lis.length);
-				
-				for(var i=0;i<lis.length;i++)
-				{
-					$(lis[i]).on("click",function(){
-//						alert(lis.length);
-						var lis_attr=$(this).attr("myAttr"); 
-						var table_lis=$(".table");
-						for(var j=0;j<table_lis.length;j++)
-						{
-							var table_attr=$(table_lis[j]).attr("myAttr");
-							if(lis_attr==table_attr)
-							{
-								$(table_lis[j]).show();
-							}else{
-								$(table_lis[j]).hide();
-							}
-							
-						}
-					})
-				}
-			})
+
 		</script>
 	
 <script type="text/javascript">
-	function dangqian(id)
-	{
-		for(i=1;i<3;i++)
-		{
-			if(i==id)
-			{
-				document.getElementById(i).className='cc';
-			}
-			else
-			{
-				document.getElementById(i).className='';
-			}
-			
-		}
-	}
+	
 </script>
 
 	</head>
@@ -78,62 +43,71 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				</ul>
 			</div>
-			<form action="" method="post" class="content">
-			<div class="table" myAttr="usermess" style="display: none;">
-				<dl>
-					<dt>用户名：</dt>
-					<dd>
-						<input type="text" name="text" class="text" value="" />
-					</dd>
-				</dl>
-				<dl>
-					<dt>密码：</dt>
-					<dd>
-						<input type="text" name="text" class="text" value="" />
-					</dd>
-				</dl>
-				<dl>
-					<dt>确认密码：</dt>
-					<dd>
-						<input type="text" name="text" class="text" value="" />
-					</dd>
-				</dl>
-				<dl>
-					<dt>E-mail：</dt>
-					<dd>
-						<input type="text" name="text" class="text" value="" />
-					</dd>
-				</dl>
-				<dl>
-					<dt>昵称：</dt>
-					<dd>
-						<input type="text" name="text" class="text" value="" />
-					</dd>
-				</dl>
-				<dl>
-					<dt>用户等级：</dt>
-					<dd>
-						<select name="userlv" class="userlv">
-							<option value="">普通用户</option>
-							<option value="">铜牌用户</option>
-							<option value="">银牌用户</option>
-							<option value="">金牌用户</option>
-							
-						</select>
-					</dd>
-				</dl>
+			<div class="content">
+			<form action="member/add_member" method="post">
+				<div class="table" myAttr="usermess" style="display: block;">
+					<dl>
+						<dt>用户名：</dt>
+						<dd>
+							<input type="text" name="name" class="text" value="" />
+							<span class="name_span" style="color:red;margin-left:10px"></span>
+						</dd>
+					</dl>
+					<dl>
+						<dt>密码：</dt>
+						<dd>
+							<input type="text" name="password" class="text" value="" />
+						</dd>
+					</dl>
+					<dl>
+						<dt>确认密码：</dt>
+						<dd>
+							<input type="text" name="password2" class="text" value="" />
+							<span class="pass_span" style="color:red;margin-left:10px"></span>
+						</dd>
+					</dl>
+					<dl>
+						<dt>E-mail：</dt>
+						<dd>
+							<input type="text" name="email" class="text" value="" />
+							<span class="emain_span" style="color:red;margin-left:10px"></span>
+						</dd>
+						
+					</dl>
+					<dl>
+						<dt>昵称：</dt>
+						<dd>
+							<input type="text" name="nick_name" class="text" value="" />
+						</dd>
+					</dl>
+					<dl>
+						<dt>用户等级：</dt>
+						<dd>
+							<select name="member_garde" class="userlv">
+								<option value="青铜用户">青铜用户</option>
+								<option value="白银用户">白银用户</option>
+								<option value="黄金用户">黄金用户</option>
+								<option value="铂金用户">铂金用户</option>
+								<option value="铂金用户">砖石用户</option>
+								
+							</select>
+						</dd>
+					</dl>
 
-				<dl>
-					<dt>&nbsp;</dt>
-					<dd>
-						<input type="submit" class="button" value="确 定">
-						<input type="button" class="button" value="返 回">
-					</dd>
+					<dl>
+						<dt>&nbsp;</dt>
+						<dd>
+							<input type="submit" class="button" id="user_btn" value="确 定" />
+							<input type="button" class="button" value="返 回" />
+						</dd>
 
-				</dl>
+					</dl>
 
-			</div>	
-				<div class="table" myAttr="perdata" style="display: block;">
+				</div>	
+			</form>
+			
+			
+				<div class="table" myAttr="perdata" style="display: none;">
 					
 					<div class="img_nav">
 														<dl>
@@ -174,7 +148,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 					
 				</div>	
-			</form>
+			</div>
 
 		</div>
 	</body>
