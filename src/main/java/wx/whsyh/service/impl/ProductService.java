@@ -34,5 +34,14 @@ public class ProductService implements ProductServiceI {
 	public void addProduct(Product p) {
 		productDao.addProduct(p);
 	}
+
+	@Override
+	public void deleteProduct(Integer id) {
+		if(id!=null)
+		{
+			productDao.deleteProduct(id);
+		}
+		
+	}
 	
 }

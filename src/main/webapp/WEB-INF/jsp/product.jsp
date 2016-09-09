@@ -31,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<a href="product/add">添加</a>
 						
 					</li>
-					<li>删除</li>
+					<li><a href="javascript:" id="deleteBtn">删除</a></li>
 					<li>刷新</li>
 					<select name="goods_select" class="goods_select">
 							<option value="1">商品筛选</option>
@@ -65,20 +65,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</tr>
 						<c:forEach items="${datas }" var="product">
 						<tr>
-							<td class="check"><input type="checkbox" name="checkbox" id="ids" value="" /></th>
-							<td ><span>${product.coding }</span></td>
+							<td class="check"><input type="checkbox" class="selectTag" name="ids" value="${product.id }" /></td>
+							<td ><span>${product.coding }${is}</span></td>
 							<td ><span>${product.name }</span></td>
-							<td >
-								<span>
-									${product.product_type }
-								</span>
-							</td>
+							<td ><span>${product.product_type }</span></td>
 							<td ><span>${product.sale_price }</span></td>
 							<td ><span>${product.is_putaway }</span></td>
 							<td ><span>${product.create_date }</span></td>
 							<td ><a>[编辑]</a><a>[查看]</a></td>
 						</tr>
 						</c:forEach>
+						<input type="hidden" name="ids" />
 					</tbody>
 				</table>
 				
@@ -88,4 +85,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 	</body>
+	<script>
+		function getSelect(){
+			var selected = $(".selectTag:checked");
+			var ids = new Array();
+			for(var i=0;i<selected.length;i++){
+				ids[i] = selected[i].value;
+			}
+			return ids;
+		}
+		$("#deleteBtn").click(function(){
+			var ids = getSelect();
+			$.ajax({
+				url:'product/delete',
+				type:'get',
+				data:{ids:ids},
+				traditional:true,
+				success:function(data){
+					alert("删除成功");
+					window.location.reload();
+				},
+				error:function(data){
+					alert("删除失败");
+				}
+			});
+		});
+	</script>
 </html>

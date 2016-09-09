@@ -45,8 +45,18 @@ public class ProductDao extends BaseDao<Product> implements ProductDaoI {
 
 	@Override
 	public void addProduct(Product p) {
-		// TODO Auto-generated method stub
 		super.add(p);
+	}
+
+	@Override
+	public void deleteProduct(Integer id) {
+		if(id!=null)
+		{
+			Session session = this.getSession();
+			Query query= session.createQuery("delete from Product where id=?");
+			query.setParameter(0, id);
+			query.executeUpdate();
+		}
 	}
 
 
