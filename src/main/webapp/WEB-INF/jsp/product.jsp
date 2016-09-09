@@ -65,7 +65,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</tr>
 						<c:forEach items="${datas }" var="product">
 						<tr>
-							<td class="check"><input type="checkbox" class="selectTag" name="ids" value="${product.id }" /></td>
+							<td class="check"><input type="checkbox" myBox="checkbox" class="selectTag" name="ids" value="${product.id }" /></td>
 							<td ><span>${product.coding }${is}</span></td>
 							<td ><span>${product.name }</span></td>
 							<td ><span>${product.product_type }</span></td>
