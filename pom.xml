@@ -17,7 +17,7 @@
 		<log4j.version>1.2.17</log4j.version>
 	</properties>
 	<repositories><!-- 发现依赖和扩展的远程资源库 -->
-	    <!-- 阿里巴巴发布版本仓库 -->
+		<!-- 阿里巴巴发布版本仓库 -->
 		<repository>
 			<id>alibaba-opensource</id>
 			<name>alibaba-opensource</name>
@@ -34,7 +34,7 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
-		
+
 		<!-- 阿里巴巴快照版本仓库 -->
 		<repository>
 			<id>alibaba-opensource-snapshot</id>
@@ -44,6 +44,11 @@
 		</repository>
 	</repositories>
 	<dependencies>
+		<dependency>
+			<groupId>antlr</groupId>
+			<artifactId>antlr</artifactId>
+			<version>2.7.7</version>
+		</dependency>
 		<!-- junit测试包 -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -218,7 +223,7 @@
 			<artifactId>dwr</artifactId>
 			<version>3.0.0-RELEASE</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>

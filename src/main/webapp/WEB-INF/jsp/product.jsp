@@ -15,13 +15,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="<%=request.getContextPath() %>/resources/js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="<%=request.getContextPath() %>/resources/js/product.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-		
+			$(document).ready(function(){
+				alert(${datas});
+			});
+			
 		</script>
 	</head>
 	<body>
 		<div class="container">
 			<div class="head">
-				<a>首页</a>》
+				<a>首页</a>
 				<span>商品管理</span>
 				<span>(共40条记录)</span>
 			</div>
@@ -61,20 +64,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<th ><a class="sort" name="createDate">创建日期</a></th>
 							<th><span>操作</span></th>
 						</tr>
+						<c:forEach items="${datas }" var="product">
 						<tr>
 							<td class="check"><input type="checkbox" name="checkbox" id="ids" value="" /></th>
-							<td ><span>20150211</span></td>
+							<td ><span>${product.coding }</span></td>
 							<td >
-								<span title="索尼 KDL-50W700B">
-									索尼 KDL-50W700B
+								<span>
+									${product.product_type }
 								</span>
-								<span class="promotion" title="平板电视促销专场">返券促销</span>
+								<span class="promotion">${product.sale_price }</span>
 							</td>
-							<td ><span>平板电视</span></td>
-							<td ><span>￥4688.00</span></td>
+							<td ><span>${product.is_putaway }</span></td>
+							<td ><span>${product.create_date }</span></td>
 							<td ><span>是</span></td>
 							<td ><a>[编辑]</a><a>[查看]</a></td>
 						</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 				

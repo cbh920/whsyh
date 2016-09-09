@@ -106,7 +106,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</dl>
 						</td>
 						<td class="menu_right">
-							<iframe src="product.jsp" width="" height="" frameborder="0"></iframe>
+							<iframe src="product/products" width="" height="" frameborder="0"></iframe>
 						</td>
 					</tr>
 				</tbody>

@@ -13,7 +13,7 @@
       http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
  
 	<!-- 注解扫描包 -->
-	<context:component-scan base-package="whsyh.controller" />
+	<context:component-scan base-package="wx.whsyh.controller" />
  
 	<!-- <context:component-scan /> -->
 	<!-- 扫描指定的包中的类上的注解，常用的注解有： -->

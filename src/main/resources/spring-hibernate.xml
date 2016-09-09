@@ -68,7 +68,7 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 		<!-- 自动扫描注解方式配置的hibernate类文件 -->
 		<property name="packagesToScan">
 			<list>
-				<value>whsyh.model</value>
+				<value>wx.whsyh.model</value>
 			</list>
 		</property>
 	</bean>
@@ -106,7 +106,7 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 		</tx:attributes>
 	</tx:advice>
 	<aop:config>
-		<aop:pointcut id="transactionPointcut" expression="execution(* whsyh.service..*.*(..))" />
+		<aop:pointcut id="transactionPointcut" expression="execution(* wx.whsyh.service..*.*(..))" />
 		<aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" />
 	</aop:config>
 </beans>
