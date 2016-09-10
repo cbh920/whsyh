@@ -30,4 +30,13 @@ public class OrderService implements OrderServiceI {
 		return orderDao.findOrders();
 	}
 	
+	@Override
+	public void deleteOrder(Integer id) {
+		if(id!=null)
+		{
+			orderDao.deleteOrder(id);
+		}
+		
+	}
+
 }

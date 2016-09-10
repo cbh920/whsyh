@@ -1,10 +1,14 @@
 package wx.whsyh.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import wx.whsyh.model.Order;
 import wx.whsyh.service.OrderServiceI;
 
 @Controller
@@ -27,5 +31,17 @@ public class OrderController {
 		model.addAttribute("orders", orderService.findOrders());
 		return "/order_manage";
 	}
-	
+	@RequestMapping(value="/delete",method=RequestMethod.GET)
+	public String delete(HttpServletRequest request,Model model)
+	{
+		String [] ids = request.getParameterValues("ids");
+
+		for(int i=0;i<ids.length;i++)
+		{
+			orderService.deleteOrder(Integer.valueOf(ids[i]));
+		}
+
+		return "redirect:/order/orders";
+
+	}
 }

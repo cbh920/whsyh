@@ -9,6 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html>
 <html>
 	<head>
+		<base href="<%=basePath %>">
 		<meta charset="UTF-8">
 		<title></title>
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/order1.css"/>
@@ -37,9 +38,7 @@ $(document).ready(function(){
 			</div>
 			<div class="list">
 				<ul>
-					<li class="list_add">
-						删除
-					</li>
+					<li><a href="javascript:" id="deleteBtn">删除</a></li>
 					<li>刷新</li>
 					<select name="goods_select" class="goods_select">
 							<option value="1">订单筛选</option>
@@ -79,7 +78,7 @@ $(document).ready(function(){
 						
 						<c:forEach items="${orders }" var="order">
 						<tr>
-							<td class="check"><input type="checkbox"  name="checkbox" id="ids" value="" /></th>
+							<td class="check"><input type="checkbox"  name="checkbox"  class="selectTag" id="ids" value="${order.id}" /></th>
 							<td ><span>${order.coding }</span></td>
 							<td ><span>${order.money}</span></td>
 							<td ><span>${order.member}</span></td>
@@ -102,4 +101,30 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</body>
+<script>
+		function getSelect(){
+			var selected = $(".selectTag:checked");
+			var ids = new Array();
+			for(var i=0;i<selected.length;i++){
+				ids[i] = selected[i].value;
+			}
+			return ids;
+		}
+		$("#deleteBtn").click(function(){
+			var ids = getSelect();
+			$.ajax({
+				url:'order/delete',
+				type:'get',
+				data:{ids:ids},
+				traditional:true,
+				success:function(data){
+					alert("删除成功");
+					window.location.reload();
+				},
+				error:function(data){
+					alert("删除失败");
+				}
+			});
+		});
+	</script>
 </html>
