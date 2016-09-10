@@ -6,7 +6,7 @@ import wx.basic.dao.BaseDaoI;
 import wx.whsyh.model.Product;
 
 public interface ProductDaoI extends BaseDaoI<Product> {
-	public List<Product> findProducts();
+	public List<Product> findProducts(int currentPage,int pageSize);
 	
 	public void addProduct(Product p);
 	
@@ -21,5 +21,7 @@ public interface ProductDaoI extends BaseDaoI<Product> {
 	public List<Product> listTypeAndName(String name,String type);
 	
 	public List<Product> listByType(String type);
+	
+	public int getAllCount();
 	
 }

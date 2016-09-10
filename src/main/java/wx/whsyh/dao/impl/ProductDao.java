@@ -36,11 +36,12 @@ public class ProductDao extends BaseDao<Product> implements ProductDaoI {
 	}
 
 	@Override
-	public List<Product> findProducts() {
+	public List<Product> findProducts(int currentPage,int pageSize) {
 		Session session = this.getSession();
 		Query query = session.createQuery("from Product");
+		query.setFirstResult(currentPage);
+		query.setMaxResults(pageSize);
 		return query.list();
-//		return this.getSession().createQuery("from Product").list();
 	}
 
 	@Override
@@ -100,6 +101,12 @@ public class ProductDao extends BaseDao<Product> implements ProductDaoI {
 		Query query= session.createQuery(hql);
 		query.setParameter(0, type);
 		return query.list();
+	}
+
+	@Override
+	public int getAllCount() {
+		int count=((Long) getSession().createQuery( "select count(*) from Product").iterate().next()).intValue();
+        return count;  
 	}
 	
 }

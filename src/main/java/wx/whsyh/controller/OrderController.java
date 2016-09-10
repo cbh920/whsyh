@@ -51,11 +51,11 @@ public class OrderController {
 		return "redirect:/order/orders";
 
 	}
-	@RequestMapping(value="/list_name",method=RequestMethod.GET)
+	@RequestMapping(value="/list_name",method=RequestMethod.POST)
 	public String listByName(HttpServletRequest request,Model model) throws UnsupportedEncodingException
 	{
-		String type = new String(request.getParameter("goods_select").getBytes("ISO-8859-1"),"UTF-8");
-		String name = new String(request.getParameter("search_text").getBytes("ISO-8859-1"),"UTF-8");
+		String type = request.getParameter("goods_select");
+		String name = request.getParameter("search_text");
 		if(type.equals("付款方式"))
 		{
 			model.addAttribute("listname", orderService.listByName(name));

@@ -32,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</li>
 					<li><a href="javascript:" id="deleteBtn">删除</a></li>
 					<li>刷新</li>
-					<form action="product/list_name" method="get" class="left">
+					<form action="product/list_name" method="POST" class="left">
 					<select name="goods" class="goods_select left" id="goods">
 							<option value="商品筛选">商品筛选</option>
 							<option value="手机数码">手机数码</option>

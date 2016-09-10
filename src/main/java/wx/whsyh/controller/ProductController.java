@@ -35,16 +35,20 @@ public class ProductController {
 		this.productService = productService;
 	}
 	@RequestMapping("/products")
-	public String list(Model model)
+	public String list(Model model,HttpServletRequest request)
 	{
-		model.addAttribute("datas", productService.findProducts());
+		String pageNo = request.getParameter("pageNo");
+		if (pageNo == null) {
+			pageNo = "1";
+		}
+		model.addAttribute("datas", productService.findProducts(1,10));
 		return "/product";
 	}
 
 	@RequestMapping(value="/add",method=RequestMethod.GET)
 	public String addProduct()
 	{
-		
+
 		return "/product_add";
 
 	}
@@ -53,22 +57,22 @@ public class ProductController {
 	public String add(@Valid Product p,Model model,@RequestParam(value="file",required=false) MultipartFile file,HttpServletRequest request)
 	{
 		System.out.println("开始");  
-        String path = request.getSession().getServletContext().getRealPath("upload");  
-        String fileName = file.getOriginalFilename();  
-//        String fileName = new Date().getTime()+".jpg";  
-        System.out.println(path);  
-        File targetFile = new File(path, fileName);  
-        if(!targetFile.exists()){  
-            targetFile.mkdirs();  
-        }  
-  
-        //保存  
-        try {  
-           file.transferTo(targetFile);  
-        } catch (Exception e) {  
-            e.printStackTrace();  
-        }  
-        model.addAttribute("fileUrl", request.getContextPath()+"/upload/"+fileName); 
+		String path = request.getSession().getServletContext().getRealPath("upload");  
+		String fileName = file.getOriginalFilename();  
+		//        String fileName = new Date().getTime()+".jpg";  
+		System.out.println(path);  
+		File targetFile = new File(path, fileName);  
+		if(!targetFile.exists()){  
+			targetFile.mkdirs();  
+		}  
+
+		//保存  
+		try {  
+			file.transferTo(targetFile);  
+		} catch (Exception e) {  
+			e.printStackTrace();  
+		}  
+		model.addAttribute("fileUrl", request.getContextPath()+"/upload/"+fileName); 
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
 		p.setCreate_date(df.format(new Date())+"");
 		p.setImg_url(request.getContextPath()+"/upload/"+fileName);
@@ -89,13 +93,12 @@ public class ProductController {
 		return "redirect:/product/products";
 
 	}
-	
-	@SuppressWarnings("unused")
-	@RequestMapping(value="/list_name",method=RequestMethod.GET)
+
+	@RequestMapping(value="/list_name",method=RequestMethod.POST)
 	public String listByName(HttpServletRequest request,Model model) throws UnsupportedEncodingException
 	{
-		String type = new String(request.getParameter("goods").getBytes("ISO-8859-1"),"UTF-8");
-		String name = new String(request.getParameter("search_text").getBytes("ISO-8859-1"),"UTF-8");
+		String type = request.getParameter("goods");
+		String name = request.getParameter("search_text");
 		if(type.equals("商品筛选"))
 		{
 			model.addAttribute("listname", productService.listByName(name));
@@ -112,18 +115,18 @@ public class ProductController {
 
 	@RequestMapping(value="/updata/{id}")
 	public String update(@PathVariable int id,Model model){
-		
+
 		model.addAttribute("p", productService.listById(id));
 		return "/product_updata";
 	}
-	
+
 	@RequestMapping(value="/show/{id}")
 	public String show(@PathVariable int id,Model model){
-		
+
 		model.addAttribute("show", productService.listById(id));
 		return "/product_show";
 	}
-	
+
 	@RequestMapping(value="/updata_product/{id}",method=RequestMethod.POST)
 	public String update(@Valid Product p,@PathVariable int id,Model model)
 	{
@@ -141,26 +144,23 @@ public class ProductController {
 	@RequestMapping(value="/upload_img")
 	public String uploadImg(@RequestParam(value="url_img",required=false) MultipartFile file,HttpServletRequest request,Model model)
 	{
-		System.out.println("开始");  
-        String path = request.getSession().getServletContext().getRealPath("upload");  
-        String fileName = file.getOriginalFilename();  
-//        String fileName = new Date().getTime()+".jpg";  
-        System.out.println(path);  
-        File targetFile = new File(path, fileName);  
-        if(!targetFile.exists()){  
-            targetFile.mkdirs();  
-        }  
-  
-        //保存  
-        try {  
-            file.transferTo(targetFile);  
-        } catch (Exception e) {  
-            e.printStackTrace();  
-        }  
-        model.addAttribute("fileUrl", request.getContextPath()+"/upload/"+fileName);  
-  
-        return "result";  
-		
+		String path = request.getSession().getServletContext().getRealPath("upload");  
+		String fileName = file.getOriginalFilename();  
+		File targetFile = new File(path, fileName);  
+		if(!targetFile.exists()){  
+			targetFile.mkdirs();  
+		}  
+
+		//保存  
+		try {  
+			file.transferTo(targetFile);  
+		} catch (Exception e) {  
+			e.printStackTrace();  
+		}  
+		model.addAttribute("fileUrl", request.getContextPath()+"/upload/"+fileName);  
+
+		return "result";  
+
 	}
-	
+
 }

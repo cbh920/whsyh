@@ -55,9 +55,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<dt>创建时间：</dt>
 					<dd>${show.create_date }</dd>
 				</dl>
-				<dl>
+				<dl style="height:200px;">
 					<dt>图片预览：</dt>
-					<dd><img alt="" src="${show.img_url }" /></dd>
+					<dd><img alt="" src="${show.img_url }" style="width:200px;height:200px" /></dd>
 				</dl>
 				<dl>
 					<dt>是否上架：</dt>

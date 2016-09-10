@@ -40,7 +40,7 @@ $(document).ready(function(){
 				<ul>
 					<li><a href="javascript:" id="deleteBtn">删除</a></li>
 					<li>刷新</li>
-					<form action="order/list_name" method="get" class="left">
+					<form action="order/list_name" method="post" class="left">
 					<select name="goods_select" class="goods_select">
 							<option value="付款方式">付款方式</option>
 							<option value="货到付款">货到付款</option>

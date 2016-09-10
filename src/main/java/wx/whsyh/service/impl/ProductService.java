@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import wx.basic.util.Page;
 import wx.whsyh.dao.ProductDaoI;
 import wx.whsyh.model.Product;
 import wx.whsyh.service.ProductServiceI;
@@ -25,9 +26,18 @@ public class ProductService implements ProductServiceI {
 		this.productDao = productDao;
 	}
 
+	@SuppressWarnings({ "unused", "rawtypes", "unchecked" })
 	@Override
-	public List<Product> findProducts() {
-		return productDao.findProducts();
+	public List<Product> findProducts(int currentPage,int pageSize) {
+		Page page = new Page();
+		int allCount = productDao.getAllCount();
+		int offset=page.countOffset(currentPage, pageSize);
+		List<Product> list = productDao.findProducts(currentPage, pageSize);
+        page.setPageNo(currentPage);
+        page.setPageSize(pageSize);
+        page.setTotalRecords(allCount);
+        page.setList(list);    
+        return page.getList();
 	}
 
 	@Override
