@@ -1,3 +1,4 @@
+
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
@@ -5,45 +6,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html>
 	<head>
 		<base href="<%=basePath %>">
 		<meta charset="UTF-8">
 		<title></title>
-		
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/product.css"/>
 		<script src="<%=request.getContextPath() %>/resources/js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
-		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/user.css"/>
+		<script src="<%=request.getContextPath() %>/resources/js/product.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-$(document).ready(function(){
-	$("#selectAll").on("click",function(){
-		if($("#selectAll").attr("checked")=="checked"){
-			$("[name='checkbox']").attr("checked",'true');//全选
-		}else{
-			$("[name='checkbox']").removeAttr("checked");//取消全选
-		}
-	})
-})
-
 		</script>
 	</head>
 	<body>
-					<div class="container">
+		<div class="container">
 			<div class="head">
-				<a>首页</a>》
-				<span>会员管理</span>
-				<span>(共140条记录)</span>
+				<a>首页</a>
+				<span>商品管理</span>
+				<span>(共40条记录)</span>
 			</div>
 			<div class="list">
 				<ul>
 					<li class="list_add">
 						<a href="member/add">添加</a>
+						
 					</li>
 					<li><a href="javascript:" id="deleteBtn">删除</a></li>
 					<li>刷新</li>
-					<form action="member/list_name" method="POST" class="left">
-					<select name="member_type" class="goods_select left" id="goods">
+					<form action="member/list_name" method="post">
+					<select name="member_type" class="goods_select left">
 							<option value="会员等级">会员等级</option>
 							<option value="青铜用户">青铜用户</option>
 							<option value="白银用户">白银用户</option>
@@ -58,9 +49,10 @@ $(document).ready(function(){
 							<option value="2">20</option>
 							<option value="3">50</option>
 					</select>
-					<input type="text" name="search_text" id="search_text" value="" />
-					<input type="submit" name="search" id="search" value="查找" />
-				</form>
+					
+						<input type="text" name="search_text" id="search_text" value="" />
+						<input type="submit" name="search" id="search" value="查找" />
+					</form>
 				</ul>
 				<table id="listTable" cellspacing="0" cellpadding="0">
 					<tbody>
@@ -73,7 +65,7 @@ $(document).ready(function(){
 							<th ><a class="sort" name="createDate">创建日期</a></th>
 							<th><span>操作</span></th>
 						</tr>
-						<c:forEach items="${members }" var="member">
+						<c:forEach items="${listname }" var="member">
 						<tr>
 							<td class="check"><input type="checkbox"  name="checkbox" class="selectTag" id="ids" value="${member.id }" /></th>
 							<td ><span>${member.name }</span></td>
@@ -87,9 +79,6 @@ $(document).ready(function(){
 						
 					</tbody>
 				</table>
-				
-				
-				
 				
 			</div>
 		</div>
@@ -119,6 +108,5 @@ $(document).ready(function(){
 				}
 			});
 		});
-		
 	</script>
 </html>

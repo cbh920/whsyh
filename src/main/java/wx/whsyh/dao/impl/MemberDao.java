@@ -80,4 +80,35 @@ public class MemberDao extends BaseDao<Member> implements MemberDaoI {
 		return member;
 	}
 
+	@Override
+	public List<Member> listByName(String name) {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		String hql="from Member as p where p.name like:name";
+		Query query= session.createQuery(hql);
+		query.setString("name", "%"+name+"%");
+		return query.list();
+	}
+
+	@Override
+	public List<Member> listTypeAndName(String name, String member_type) {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		String hql="from Member as p where p.member_garde=? and p.name like:name";
+		Query query= session.createQuery(hql);
+		query.setParameter(0, member_type);
+		query.setParameter("name",name);
+		return query.list();
+	}
+
+	@Override
+	public List<Member> listByType(String member_type) {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		String hql="from Member as p where p.member_garde=?";
+		Query query= session.createQuery(hql);
+		query.setParameter(0, member_type);
+		return query.list();
+	}
+
 }

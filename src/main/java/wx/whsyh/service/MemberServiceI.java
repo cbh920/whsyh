@@ -16,4 +16,9 @@ public interface MemberServiceI {
 	
 	public Member listById(int id);
 	
+	public List<Member> listByName(String name);
+	
+	public List<Member> listByType(String member_type);
+	
+	public List<Member> listTypeAndName(String name,String member_type);
 }

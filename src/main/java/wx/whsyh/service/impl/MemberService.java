@@ -54,4 +54,22 @@ public class MemberService implements MemberServiceI {
 		// TODO Auto-generated method stub
 		return MemberDao.listById(id);
 	}
+
+	@Override
+	public List<Member> listByName(String name) {
+		// TODO Auto-generated method stub
+		return MemberDao.listByName(name);
+	}
+
+	@Override
+	public List<Member> listByType(String member_type) {
+		// TODO Auto-generated method stub
+		return MemberDao.listByType(member_type);
+	}
+
+	@Override
+	public List<Member> listTypeAndName(String name, String member_type) {
+		// TODO Auto-generated method stub
+		return MemberDao.listTypeAndName(name, member_type);
+	}
 }

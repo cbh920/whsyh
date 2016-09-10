@@ -1,5 +1,6 @@
 package wx.whsyh.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -87,5 +88,23 @@ public class MemberController {
 		Member.setCreate_date(p.getCreate_date());
 		MemberService.updateMember(Member);
 		return "redirect:/member/members";
+	}
+	@RequestMapping(value="/list_name",method=RequestMethod.POST)
+	public String listByName(HttpServletRequest request,Model model) throws UnsupportedEncodingException
+	{
+		String member_type = request.getParameter("member_type");
+		String name = request.getParameter("search_text");
+		if(member_type.equals("会员等级"))
+		{
+			model.addAttribute("listname", MemberService.listByName(name));
+		}
+		else if(name.equals(""))
+		{
+			model.addAttribute("listname", MemberService.listByType(member_type));
+		}
+		else{
+			model.addAttribute("listname", MemberService.listTypeAndName(name, member_type));
+		}
+		return "/member_search";
 	}
 }
