@@ -16,4 +16,6 @@ public interface ProductServiceI {
 	public void updateProduct(Product p);
 	
 	public Product listById(int id);
+	
+	public List<Product> listTypeAndName(String name,String type);
 }

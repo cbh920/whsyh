@@ -55,19 +55,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<dl>
 						<dt>编号：</dt>
 						<dd>
-							<input type="text" name="coding" class="text" value="" />
+							<input type="text" name="coding" class="text" value="" maxlength="10" onkeyup="this.value=this.value.replace(/[^\d]/ig,'')" />
 						</dd>
 					</dl>
 					<dl>
 						<dt>名称：</dt>
 						<dd>
-							<input type="text" name="name" class="text" value="" />
+							<input type="text" name="name" class="text" value="" maxlength="10" />
 						</dd>
 					</dl>
 					<dl>
 						<dt>销售价：</dt>
 						<dd>
-							<input type="text" name="sale_price" class="text" value="" />
+							<input type="text" name="sale_price" class="text" value="" maxlength="6" onkeyup="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')"  />
 						</dd>
 					</dl>
 					<dl>

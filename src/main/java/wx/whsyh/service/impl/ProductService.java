@@ -58,5 +58,10 @@ public class ProductService implements ProductServiceI {
 	public Product listById(int id) {
 		return productDao.listById(id);
 	}
+
+	@Override
+	public List<Product> listTypeAndName(String name, String type) {
+		return productDao.listTypeAndName(name, type);
+	}
 	
 }

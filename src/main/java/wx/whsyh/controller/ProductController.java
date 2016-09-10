@@ -1,5 +1,6 @@
 package wx.whsyh.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -69,9 +70,17 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="/list_name",method=RequestMethod.GET)
-	public String listByName(@RequestParam("search_text") String name,Model model)
+	public String listByName(HttpServletRequest request,Model model) throws UnsupportedEncodingException
 	{
-		model.addAttribute("listname", productService.listByName(name));
+		String type = new String(request.getParameter("goods").getBytes("ISO-8859-1"),"UTF-8");
+		String name = new String(request.getParameter("search_text").getBytes("ISO-8859-1"),"UTF-8");
+		if(type.equals("商品筛选"))
+		{
+			model.addAttribute("listname", productService.listByName(name));
+		}
+		else{
+			model.addAttribute("listname", productService.listTypeAndName(name, type));
+		}
 		return "/product_search";
 	}
 
