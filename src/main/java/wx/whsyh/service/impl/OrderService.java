@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import wx.whsyh.dao.OrderDaoI;
 import wx.whsyh.model.Order;
+import wx.whsyh.model.Product;
 import wx.whsyh.service.OrderServiceI;
 
 @Service("orderService")
@@ -38,5 +39,30 @@ public class OrderService implements OrderServiceI {
 		}
 		
 	}
+	
+	@Override
+	public List<Order> listByName(String name) {
+		return orderDao.listByName(name);
+	}
 
+	@Override
+	public void updateOrder(Order p) {
+		orderDao.updateOrder(p);
+	}
+
+	@Override
+	public Order listById(int id) {
+		return orderDao.listById(id);
+	}
+
+	@Override
+	public List<Order> listTypeAndName(String name, String type) {
+		return orderDao.listTypeAndName(name, type);
+	}
+	
+	@Override
+	public List<Order> listByType(String type) {
+		return orderDao.listByType(type);
+	}
+	
 }

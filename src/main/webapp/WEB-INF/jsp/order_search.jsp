@@ -5,39 +5,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html>
 	<head>
 		<base href="<%=basePath %>">
 		<meta charset="UTF-8">
 		<title></title>
-		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/order1.css"/>
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/product.css"/>
 		<script src="<%=request.getContextPath() %>/resources/js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="<%=request.getContextPath() %>/resources/js/product.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-
-$(document).ready(function(){
-	$("#selectAll").on("click",function(){
-		if($("#selectAll").attr("checked")=="checked"){
-//			alert("a");
-			$("[name='checkbox']").attr("checked",'true');//全选
-		}else{
-			$("[name='checkbox']").removeAttr("checked");//取消全选
-		}
-	})
-});
-
 		</script>
 	</head>
 	<body>
 		<div class="container">
 			<div class="head">
-				<a>首页</a>》
-				<span>订单列表</span>
-				<span>(共10条记录)</span>
+				<a>首页</a>
+				<span>商品管理</span>
+				<span>(共40条记录)</span>
 			</div>
 			<div class="list">
 				<ul>
+					<li class="list_add">
+						<a href="product/add">添加</a>
+						
+					</li>
 					<li><a href="javascript:" id="deleteBtn">删除</a></li>
 					<li>刷新</li>
 					<form action="order/list_name" method="get" class="left">
@@ -71,10 +63,9 @@ $(document).ready(function(){
 							<th ><a class="sort" name="createDate">创建日期</a></th>
 							<th><span>操作</span></th>
 						</tr>
-						
-						<c:forEach items="${orders }" var="order">
+						<c:forEach items="${listname }" var="order">
 						<tr>
-							<td class="check"><input type="checkbox"  name="checkbox"  class="selectTag" id="ids" value="${order.id}" /></th>
+							<td class="check"><input type="checkbox" myBox="checkbox" class="selectTag" name="ids" value="${order.id }" /></td>
 							<td ><span>${order.coding }</span></td>
 							<td ><span>${order.money}</span></td>
 							<td ><span>${order.member}</span></td>
@@ -86,8 +77,7 @@ $(document).ready(function(){
 							<td ><a href="order/updata/${order.id}">[编辑]</a><a>[查看]</a></td>
 						</tr>
 						</c:forEach>
-						
-						
+						<input type="hidden" name="ids" />
 					</tbody>
 				</table>
 				
@@ -97,7 +87,7 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</body>
-<script>
+	<script>
 		function getSelect(){
 			var selected = $(".selectTag:checked");
 			var ids = new Array();
@@ -124,3 +114,4 @@ $(document).ready(function(){
 		});
 	</script>
 </html>
+

@@ -56,4 +56,48 @@ public class OrderDao extends BaseDao<Order> implements OrderDaoI {
 		}
 	}
 
+	@Override
+	public List<Order> listByName(String name) {
+		Session session = this.getSession();
+		String hql="from Order as o where o.coding like:coding";
+		Query query= session.createQuery(hql);
+		query.setString("coding", "%"+name+"%");
+		return query.list();
+	}
+	
+	
+	
+	@Override
+	public void updateOrder(Order o) {
+		getSession().update(o);
+	}
+	
+	@Override
+	public Order listById(int id) {
+		String hql="from Order as o where o.id=?";
+		Session session = getSession();
+		Query query = session.createQuery(hql);
+		query.setParameter(0, id);
+		Order order = (Order)query.list().get(0);
+		return order;
+	}
+	
+	@Override
+	public List<Order> listTypeAndName(String name, String type) {
+		Session session = this.getSession();
+		String hql="from Order as o where o.payment_method=? and o.coding like:coding";
+		Query query= session.createQuery(hql);
+		query.setParameter(0, type);
+		query.setParameter("coding",name);
+		return query.list();
+	}
+	
+	@Override
+	public List<Order> listByType(String type) {
+		Session session = this.getSession();
+		String hql="from Order as o where o.payment_method=?";
+		Query query= session.createQuery(hql);
+		query.setParameter(0, type);
+		return query.list();
+	}
 }
