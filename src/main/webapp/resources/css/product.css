@@ -25,6 +25,12 @@ input,select{
 	background: #f5faff;
 	color: #333333;
 }
+.left{
+	float:left;
+}
+.right{
+	float:right;
+}
 .container{
 	background: #f5faff;
 	

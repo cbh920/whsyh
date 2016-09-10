@@ -20,7 +20,7 @@ a:hover{
 .content{
 	margin: 0 auto;
 	width: 360px;
-	height: 220px;
+	height: 280px;
 	position: absolute ;
 	top: 150px;
 	left: 400px;
@@ -87,3 +87,21 @@ a:hover{
 	margin-right: 10px;
 	color: #333333;
 }
+
+
+.name_span{
+
+	height:20px;
+	color:red;
+	margin-left:50px;
+	margin-bottom:5px;
+}
+
+.password_span{
+
+	height:20px;
+	color:red;
+	margin-left:50px;
+	margin-bottom:5px;
+}
+

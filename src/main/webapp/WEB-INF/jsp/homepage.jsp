@@ -9,6 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html>
 <html>
 	<head>
+		<base href="<%=basePath %>">
 		<meta charset="UTF-8">
 		<title></title>
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/homepage.css"/>
@@ -46,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<a href="">关于我们</a>
 								</div>
 								<div class="link">
-									<strong>admin</strong>您好！
+									<strong><c:out value="${user.name}" /> </strong>您好！
 									<a href="">[账号设置]</a>
 									<a href="">[注销]</a>
 								</div>
@@ -60,49 +61,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<dd><a class="good_manager">商品管理</a></dd>
 								<dd><a class="stock_manager">库存管理</a></dd>
 								<dd><a href="product/add">商品参数</a></dd>
-								<dd><a href="#">商品分类</a></dd>
-								<dd><a href="#">商品属性</a></dd>
-								<dd><a href="#">规格管理</a></dd>
-								<dd><a href="#">品牌管理</a></dd>
-								<dd><a href="#">到货通知</a></dd>
+								<dd><a>商品分类</a></dd>
+								<dd><a>商品属性</a></dd>
+								<dd><a>规格管理</a></dd>
+								<dd><a>品牌管理</a></dd>
+								<dd><a>到货通知</a></dd>
 							</dl>
 							<dl class="order" style="display: none;"> 
-								<dt><a href="#">订单商品管理</a></dt>
-								<dd><a href="#">订单管理</a></dd>
-								<dd><a href="#">发货管理</a></dd>
-								<dd><a href="#">退货管理</a></dd>
+								<dt><a>订单商品管理</a></dt>
+								<dd><a>订单管理</a></dd>
+								<dd><a>发货管理</a></dd>
+								<dd><a>退货管理</a></dd>
 							</dl>
 							<dl class="member" style="display: none;"> 
-								<dt><a href="#">会员管理</a></dt>
-								<dd><a href="#">会员管理</a></dd>
-								<dd><a href="#">会员等级</a></dd>
-								<dd><a href="#"></a></dd>
+								<dt><a>会员管理</a></dt>
+								<dd><a>会员管理</a></dd>
+								<dd><a>会员等级</a></dd>
 							</dl>
 							<dl class="content" style="display: none;"> 
-								<dt><a href="#">文章分类</a></dt>
-								<dd><a href="#">文章列表</a></dd>
-								<dd><a href="#">文章自动发布</a></dd>
-								<dd><a href="#"></a></dd>
+								<dt><a>文章分类</a></dt>
+								<dd><a>文章列表</a></dd>
+								<dd><a>文章自动发布</a></dd>
 							</dl>
 							<dl class="authorization" style="display: none;"> 
-								<dt><a href="#">权限管理</a></dt>
-								<dd><a href="#">管理员列表</a></dd>
-								<dd><a href="#">管理员日志</a></dd>
-								<dd><a href="#"></a></dd>
+								<dt><a>权限管理</a></dt>
+								<dd><a>管理员列表</a></dd>
+								<dd><a>管理员日志</a></dd>
+								<dd><a></a></dd>
 							</dl>
 							<dl class="statistics" style="display: none;"> 
-								<dt><a href="#">统计报表</a></dt>
-								<dd><a href="#">客户统计</a></dd>
-								<dd><a href="#">订单统计</a></dd>
-								<dd><a href="#">销售概况</a></dd>
-								<dd><a href="#">销售明细</a></dd>
-								<dd><a href="#">销售排名</a></dd>
+								<dt><a>统计报表</a></dt>
+								<dd><a>客户统计</a></dd>
+								<dd><a>订单统计</a></dd>
+								<dd><a>销售概况</a></dd>
+								<dd><a>销售明细</a></dd>
+								<dd><a>销售排名</a></dd>
 							</dl>
 							<dl class="system" style="display: none;"> 
-								<dt><a href="#">系统管理</a></dt>
-								<dd><a href="#">系统设置</a></dd>
-								<dd><a href="#">地区列表</a></dd>
-								<dd><a href="#"></a></dd>
+								<dt><a>系统管理</a></dt>
+								<dd><a>系统设置</a></dd>
+								<dd><a>地区列表</a></dd>
 							</dl>
 						</td>
 						<td class="menu_right">
