@@ -16,6 +16,7 @@ public class Product {
 	private String sale_price;
 	private String is_putaway;
 	private String create_date;
+	private String img_url;
 	
 	@Id
 	@GeneratedValue
@@ -62,10 +63,16 @@ public class Product {
 	public void setCreate_date(String create_date) {
 		this.create_date = create_date;
 	}
-	
-	
+	public String getImg_url() {
+		return img_url;
+	}
+	public void setImg_url(String img_url) {
+		this.img_url = img_url;
+	}
+
 	public Product(int id, String coding, String name, String product_type,
-			String sale_price, String is_putaway, String create_date) {
+			String sale_price, String is_putaway, String create_date,
+			String img_url) {
 		super();
 		this.id = id;
 		this.coding = coding;
@@ -74,6 +81,7 @@ public class Product {
 		this.sale_price = sale_price;
 		this.is_putaway = is_putaway;
 		this.create_date = create_date;
+		this.img_url = img_url;
 	}
 	public Product() {
 		super();

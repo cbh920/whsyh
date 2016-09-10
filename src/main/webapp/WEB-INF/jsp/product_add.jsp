@@ -38,7 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</ul>
 		</div>
 		<div class="content">
-			<form action="product/add_porduct" method="post">
+			<form action="product/add_porduct" method="post" enctype="multipart/form-data">
 				<div class="table dl_border" myAttr="goods" style="display: block;">
 					<dl>
 						<dt>商品分类：</dt>
@@ -68,6 +68,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<dt>销售价：</dt>
 						<dd>
 							<input type="text" name="sale_price" class="text" value="" maxlength="6" onkeyup="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')"  />
+						</dd>
+					</dl>
+					<dl>
+						<dt>上传图片：</dt>
+						<dd>
+							<input type="file" name="file" class="" value="浏览" />
 						</dd>
 					</dl>
 					<dl>

@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="head">
 				<a>首页</a>
 				<span>商品管理</span>
-				<span>(共40条记录)</span>
+				<span>(共 条记录)</span>
 			</div>
 			<div class="list">
 				<ul>
@@ -72,15 +72,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<td ><span>${product.sale_price }</span></td>
 							<td ><span>${product.is_putaway }</span></td>
 							<td ><span>${product.create_date }</span></td>
-							<td ><a href="product/updata/${product.id}">[编辑]</a><a>[查看]</a></td>
+							<td ><a href="product/updata/${product.id}">[编辑]</a><a href="product/show/${product.id}">[查看]</a></td>
 						</tr>
 						</c:forEach>
 					</tbody>
 				</table>
-				
-				
-				
-				
 			</div>
 		</div>
 	</body>
