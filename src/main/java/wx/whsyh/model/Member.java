@@ -69,7 +69,7 @@ public class Member {
 	public Member(int id,String name,String password, 
 			String email,String nick_name,String member_garde,String create_date) {
 		
-	
+		super();
 		this.id = id;
 		this.name = name;
 		this.password=password;
@@ -81,5 +81,4 @@ public class Member {
 	public Member() {
 		super();
 	}
-	
 }

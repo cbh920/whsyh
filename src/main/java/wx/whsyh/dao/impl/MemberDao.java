@@ -63,6 +63,21 @@ public class MemberDao extends BaseDao<Member> implements MemberDaoI {
 			query.executeUpdate();
 		}
 	}
+	
+	@Override
+	public void updateMember(Member p) {
+		getSession().update(p);
+	}
 
+	@Override
+	public Member listById(int id) {
+		// TODO Auto-generated method stub
+		String hql="from Member as p where p.id=?";
+		Session session = getSession();
+		Query query = session.createQuery(hql);
+		query.setParameter(0, id);
+		Member member = (Member) query.list().get(0);
+		return member;
+	}
 
 }

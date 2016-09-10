@@ -1,15 +1,20 @@
 package wx.whsyh.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import wx.whsyh.model.Member;
+import wx.whsyh.model.Product;
 import wx.whsyh.service.MemberServiceI;
 
 @Controller
@@ -58,6 +63,29 @@ public class MemberController {
 			MemberService.deleteMember(Integer.valueOf(ids[i]));
 		}
 
+		return "redirect:/member/members";
+	}
+	
+	@RequestMapping(value="/updata/{id}")
+	public String update(@PathVariable int id,Model model){
+		
+		model.addAttribute("p", MemberService.listById(id));
+		return "/member_updata";
+	}
+	@RequestMapping(value="/updata_member/{id}",method=RequestMethod.POST)
+	public String update(@Valid Member p,@PathVariable int id,Model model)
+	{
+		Member Member = MemberService.listById(id);
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+		Member.setCreate_date(df.format(new Date())+"");
+	
+		Member.setName(p.getName());
+		Member.setPassword(p.getPassword());
+		Member.setEmail(p.getEmail());
+		Member.setNick_name(p.getNick_name());
+		Member.setMember_garde(p.getMember_garde());
+		Member.setCreate_date(p.getCreate_date());
+		MemberService.updateMember(Member);
 		return "redirect:/member/members";
 	}
 }

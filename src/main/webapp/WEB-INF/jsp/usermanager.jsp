@@ -59,7 +59,7 @@ $(document).ready(function(){
 							<th class="check"><input type="checkbox" id="selectAll" value="" /></th>
 							<th ><a class="sort" name="name">用户名</a></th>
 							<th ><a class="sort" name="productCategory">会员等级</a></th>
-							<th ><a class="sort" name="price">Enail</a></th>
+							<th ><a class="sort" name="price">Email</a></th>
 							<th ><a class="sort" name="isMarketable">昵称</a></th>
 							<th ><a class="sort" name="createDate">创建日期</a></th>
 							<th><span>操作</span></th>
@@ -72,7 +72,7 @@ $(document).ready(function(){
 							<td ><span>${member.email}</span></td>
 							<td ><span>${member.nick_name}</span></td>
 							<td ><span>${member.create_date}</span></td>
-							<td ><a>[编辑]</a><a>[查看]</a></td>
+							<td ><a href="member/updata/${member.id}">[编辑]</a><a href="member/show/${member.id}">[查看]</a></td>
 						</tr>
 						</c:forEach>
 						

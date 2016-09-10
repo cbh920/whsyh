@@ -41,7 +41,17 @@ public class MemberService implements MemberServiceI {
 		if(id!=null)
 		{
 			MemberDao.deleteMember(id);
-		}
-		
+		}	
+	}
+	
+	@Override
+	public void updateMember(Member p) {
+		MemberDao.updateMember(p);
+	}
+
+	@Override
+	public Member listById(int id) {
+		// TODO Auto-generated method stub
+		return MemberDao.listById(id);
 	}
 }
