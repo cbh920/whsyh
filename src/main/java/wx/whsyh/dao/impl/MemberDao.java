@@ -28,7 +28,7 @@ public class MemberDao extends BaseDao<Member> implements MemberDaoI {
 
 	@Override
 	public void delete(int id) {
-
+		this.delete(id);
 	}
 
 	@Override
@@ -50,6 +50,18 @@ public class MemberDao extends BaseDao<Member> implements MemberDaoI {
 	public void addMember(Member p) {
 		// TODO Auto-generated method stub
 		super.add(p);
+	}
+
+	@Override
+	public void deleteMember(Integer id) {
+		// TODO Auto-generated method stub
+		if(id!=null)
+		{
+			Session session = this.getSession();
+			Query query= session.createQuery("delete from Member where id=?");
+			query.setParameter(0, id);
+			query.executeUpdate();
+		}
 	}
 
 

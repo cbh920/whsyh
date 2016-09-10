@@ -40,7 +40,7 @@ $(document).ready(function(){
 					<li class="list_add">
 						<a href="member/add">添加</a>
 					</li>
-					<li>删除</li>
+					<li><a href="javascript:" id="deleteBtn">删除</a></li>
 					<li>刷新</li>
 
 					<select name="goods_page" class="goods_page">
@@ -66,7 +66,7 @@ $(document).ready(function(){
 						</tr>
 						<c:forEach items="${members }" var="member">
 						<tr>
-							<td class="check"><input type="checkbox"  name="checkbox" id="ids" value="" /></th>
+							<td class="check"><input type="checkbox"  name="checkbox" class="selectTag" id="ids" value="${member.id }" /></th>
 							<td ><span>${member.name }</span></td>
 							<td ><span>${member.member_garde}</span></td>
 							<td ><span>${member.email}</span></td>
@@ -85,4 +85,31 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</body>
+	<script>
+		function getSelect(){
+			var selected = $(".selectTag:checked");
+			var ids = new Array();
+			for(var i=0;i<selected.length;i++){
+				ids[i] = selected[i].value;
+			}
+			return ids;
+		}
+		$("#deleteBtn").click(function(){
+			var ids = getSelect();
+			$.ajax({
+				url:'member/delete',
+				type:'get',
+				data:{ids:ids},
+				traditional:true,
+				success:function(data){
+					alert("删除成功");
+					window.location.reload();
+				},
+				error:function(data){
+					alert("删除失败");
+				}
+			});
+		});
+		
+	</script>
 </html>

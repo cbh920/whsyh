@@ -36,4 +36,12 @@ public class MemberService implements MemberServiceI {
 		MemberDao.addMember(p);
 	}
 	
+	@Override
+	public void deleteMember(Integer id) {
+		if(id!=null)
+		{
+			MemberDao.deleteMember(id);
+		}
+		
+	}
 }

@@ -1,5 +1,6 @@
 package wx.whsyh.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,4 +48,16 @@ public class MemberController {
 		
 	}
 	
+	@RequestMapping(value="/delete",method=RequestMethod.GET)
+	public String delete(HttpServletRequest request,Model model)
+	{
+		String [] ids = request.getParameterValues("ids");
+
+		for(int i=0;i<ids.length;i++)
+		{
+			MemberService.deleteMember(Integer.valueOf(ids[i]));
+		}
+
+		return "redirect:/member/members";
+	}
 }

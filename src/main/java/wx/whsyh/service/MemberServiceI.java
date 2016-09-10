@@ -8,4 +8,5 @@ import wx.whsyh.model.Product;
 public interface MemberServiceI {
 	public List<Member> findMembers();
 	public void addMember(Member p);
+	public void deleteMember(Integer id);
 }

@@ -10,4 +10,6 @@ public interface MemberDaoI extends BaseDaoI<Member> {
 	public List<Member> findMembers();
 	
 	public void addMember(Member p);
+	
+	public void deleteMember(Integer id);
 }
