@@ -26,7 +26,7 @@ $(document).ready(function(){
 	var lis=$(".product a");
 //	alert(lis.length);
 	$(lis[0]).live("click",function(){
-		$(".menu_right").html("<iframe src='product/products' width='' height='' frameborder='0'></iframe>");
+		$(".menu_right").html("<iframe src='product/products.do' width='' height='' frameborder='0'></iframe>");
 	});
 });
 
