@@ -32,7 +32,7 @@ public class ProductService implements ProductServiceI {
 		Page page = new Page();
 		int allCount = productDao.getAllCount();
 		int offset=page.countOffset(currentPage, pageSize);
-		List<Product> list = productDao.findProducts(currentPage, pageSize);
+		List<Product> list = productDao.findProducts(offset, pageSize);
         page.setPageNo(currentPage);
         page.setPageSize(pageSize);
         page.setTotalRecords(allCount);
