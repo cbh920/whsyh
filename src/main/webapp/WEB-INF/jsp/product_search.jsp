@@ -33,12 +33,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</li>
 					<li><a href="javascript:" id="deleteBtn">删除</a></li>
 					<li>刷新</li>
-					<select name="goods_select" class="goods_select">
-							<option value="1">商品筛选</option>
-							<option value="2">已上架</option>
-							<option value="3">已下架</option>
-							<option value="3">库存正常</option>
-							<option value="3">库存紧张</option>
+					<form action="product/list_name" method="get">
+					<select name="goods" class="goods_select left">
+							<option value="商品筛选">商品筛选</option>
+							<option value="手机数码">手机数码</option>
+							<option value="手机">手机</option>
+							<option value="对讲机">对讲机</option>
 							
 					</select>
 					<select name="goods_page" class="goods_page">
@@ -47,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<option value="2">20</option>
 							<option value="3">50</option>
 					</select>
-					<form action="product/list_name" method="get">
+					
 						<input type="text" name="search_text" id="search_text" value="" />
 						<input type="submit" name="search" id="search" value="查找" />
 					</form>
