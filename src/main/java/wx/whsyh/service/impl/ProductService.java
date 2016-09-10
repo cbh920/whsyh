@@ -43,5 +43,10 @@ public class ProductService implements ProductServiceI {
 		}
 		
 	}
+
+	@Override
+	public List<Product> listByName(String name) {
+		return productDao.listByName(name);
+	}
 	
 }

@@ -64,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<th ><a class="sort" name="createDate">创建日期</a></th>
 							<th><span>操作</span></th>
 						</tr>
-						<c:forEach items="${datas }" var="product">
+						<c:forEach items="${listname }" var="product">
 						<tr>
 							<td class="check"><input type="checkbox" myBox="checkbox" class="selectTag" name="ids" value="${product.id }" /></td>
 							<td ><span>${product.coding }</span></td>

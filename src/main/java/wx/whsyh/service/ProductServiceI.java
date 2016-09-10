@@ -10,4 +10,6 @@ public interface ProductServiceI {
 	public void addProduct(Product p);
 	
 	public void deleteProduct(Integer id);
+	
+	public List<Product> listByName(String name);
 }

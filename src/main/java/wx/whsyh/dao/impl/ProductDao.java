@@ -59,5 +59,14 @@ public class ProductDao extends BaseDao<Product> implements ProductDaoI {
 		}
 	}
 
+	@Override
+	public List<Product> listByName(String name) {
+		Session session = this.getSession();
+		String hql="from Product as p where p.name like:name";
+		Query query= session.createQuery(hql);
+		query.setString("name", "%"+name+"%");
+		return query.list();
+	}
+
 
 }

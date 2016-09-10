@@ -53,12 +53,9 @@ public class ProductController {
 		return "redirect:/product/products";
 	}
 
-	@SuppressWarnings("unused")
 	@RequestMapping(value="/delete",method=RequestMethod.GET)
 	public String delete(HttpServletRequest request,Model model)
 	{
-		//		String idd= Arrays.toString(ids);
-		//		model.addAttribute("is", idd);
 		String [] ids = request.getParameterValues("ids");
 
 		for(int i=0;i<ids.length;i++)
@@ -68,6 +65,13 @@ public class ProductController {
 
 		return "redirect:/product/products";
 
+	}
+	
+	@RequestMapping(value="/list_name",method=RequestMethod.GET)
+	public String listByName(@RequestParam("search_text") String name,Model model)
+	{
+		model.addAttribute("listname", productService.listByName(name));
+		return "/product_search";
 	}
 
 }
