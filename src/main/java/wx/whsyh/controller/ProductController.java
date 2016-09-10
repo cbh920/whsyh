@@ -90,6 +90,7 @@ public class ProductController {
 
 	}
 	
+	@SuppressWarnings("unused")
 	@RequestMapping(value="/list_name",method=RequestMethod.GET)
 	public String listByName(HttpServletRequest request,Model model) throws UnsupportedEncodingException
 	{
@@ -98,6 +99,10 @@ public class ProductController {
 		if(type.equals("商品筛选"))
 		{
 			model.addAttribute("listname", productService.listByName(name));
+		}
+		else if(name.equals(""))
+		{
+			model.addAttribute("listname", productService.listByType(type));
 		}
 		else{
 			model.addAttribute("listname", productService.listTypeAndName(name, type));

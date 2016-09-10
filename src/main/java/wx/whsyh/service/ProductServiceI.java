@@ -18,4 +18,6 @@ public interface ProductServiceI {
 	public Product listById(int id);
 	
 	public List<Product> listTypeAndName(String name,String type);
+	
+	public List<Product> listByType(String type);
 }

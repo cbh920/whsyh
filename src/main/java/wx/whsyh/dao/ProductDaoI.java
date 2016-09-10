@@ -20,4 +20,6 @@ public interface ProductDaoI extends BaseDaoI<Product> {
 	
 	public List<Product> listTypeAndName(String name,String type);
 	
+	public List<Product> listByType(String type);
+	
 }
