@@ -62,32 +62,7 @@ tr{
 	overflow: hidden;
 }
 
-#nav{
-	width: 600px;
-	height:30px;
-	float: left;
-	padding-top: 30px;
-	white-space: nowrap;
-	/*border: 1px solid red;*/
-	
-}
-#nav li{
-	float: left;
-	width: 74px;
-	border-right: 1px  solid #fff;
-}
-#nav li a{
-	height: 30px;
-	line-height: 30px;
-	font-size: 14px;
-	color: #488bd1;
-	text-align: center;
-	
-}
-#nav li a:hover{
-	width:74px ;
-	height:30px ;
-}
+
 .link{
 	
 	width: 240px;
@@ -117,6 +92,38 @@ tr{
 	height: 100%;
 	margin: 0;
 }
+#nav{
+	width: 160px;
+	height:30px;
+	float: left;
+	padding-top: 30px;
+	white-space: nowrap;
+	/*border: 1px solid red;*/
+	
+}
+#nav li{
+	width: 100%;
+	color: #666666;
+	border-top: 1px dashed #b7d3e1;
+	border-right: 1px  solid #fff;
+	padding-left:20px;
+	margin-bottom:10px;
+	padding-top:10px;
+	
+}
+.nav2{
+	height: 30px;
+	line-height: 30px;
+	font-size: 12px;
+	color: #333333;
+	text-align: center;
+	font-weight: bold;
+	
+}
+#nav li a:hover{
+	width:74px ;
+	height:30px ;
+}
 .menu{
 	width: 160px;
 	height: 580px;
@@ -134,25 +141,31 @@ tr{
 	height: 580px;
 	padding-left: 10px;
 }
+.menu dl{
+	
+}
 .menu dt{
 	height: 26px;
 	line-height: 26px;
 	font-weight: bold;
 	color: #333333;
-	border-bottom: 1px dashed #b7d3e1;
-	padding-left: 10px;
+	padding-left: 20px;
 }
-.menu dt a{
-	color: #333333;
-}
+
 .menu dd{
 	margin: 10px 0;
 	padding-left: 10px;
+	border-top: 1px dashed #b7d3e1;
+	padding-left: 20px;
 }
 .menu dd a{
 	height: 26px;
 	line-height: 26px;
 	color: #666666;
+	font-size:10px;
+	
 	
 }
+
+	
 

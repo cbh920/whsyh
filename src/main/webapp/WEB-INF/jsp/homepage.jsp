@@ -29,18 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</th>
 						<th>
 							<div class="head_right">
-								<div id="nav">
-									<ul>
-										<li><a id="nav0">商品</a></li>
-										<li><a id="nav1">订单</a></li>
-										<li><a id="nav2">会员</a></li>
-										<li><a id="nav3">内容</a></li>
-										<li><a id="nav4">权限</a></li>
-										<li><a id="nav5">统计</a></li>
-										<li><a id="nav6">系统</a></li>
-										<li><a id="nav7">首页</a></li>
-									</ul>
-								</div>
+								
 								<div class="link">
 									<a href="">官方网站</a>&nbsp;|&nbsp;
 									<a href="">交流论坛</a>&nbsp;|&nbsp;
@@ -56,28 +45,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</tr>
 					<tr>
 						<td class="menu">
-							<dl class="product" style="display: block;"> 
-								<dt><a>商品管理</a></dt>
-								<dd><a class="good_manager">商品管理</a></dd>
-								<dd><a class="stock_manager">库存管理</a></dd>
-								<dd><a href="product/add">商品参数</a></dd>
-								<dd><a>商品分类</a></dd>
-								<dd><a>商品属性</a></dd>
-								<dd><a>规格管理</a></dd>
-								<dd><a>品牌管理</a></dd>
-								<dd><a>到货通知</a></dd>
-							</dl>
-							<dl class="order" style="display: none;"> 
-								<dt><a>订单商品管理</a></dt>
-								<dd><a>订单管理</a></dd>
-								<dd><a>发货管理</a></dd>
-								<dd><a>退货管理</a></dd>
-							</dl>
-							<dl class="member" style="display: none;"> 
-								<dt><a>会员管理</a></dt>
-								<dd><a>会员管理</a></dd>
-								<dd><a>会员等级</a></dd>
-							</dl>
+							<div id="nav">
+									<ul>
+										<li><a class="nav2" myAttr="product">商品管理</a>
+											<dl class="product" myAttr="product" style="display: none;"> 
+												<dd><a class="good_manager" style="font-weight:normal;">商品管理</a></dd>
+												<dd><a class="stock_manager">库存管理</a></dd>
+												<dd><a class="good_param">商品参数</a></dd>
+											</dl>
+										</li>
+										<li><a class="nav2" myAttr="order">订单管理</a>
+											<dl class="order"  myAttr="order" style="display: none;">
+												<dd><a>订单管理</a></dd>
+												<dd><a>发货管理</a></dd>
+												<dd><a>退货管理</a></dd>
+											</dl>
+										</li>
+										<li><a class="nav2">会员管理</a>
+											<dl class="member" style="display: none;">
+												<dd><a>会员管理</a></dd>
+												<dd><a>会员等级</a></dd>
+											</dl>
+										</li>
+										
+									</ul>
+							</div>
+							
 							<dl class="content" style="display: none;"> 
 								<dt><a>文章分类</a></dt>
 								<dd><a>文章列表</a></dd>
