@@ -3,9 +3,9 @@ package wx.basic.util;
 import java.util.List;
 
 
-public class Page<T> {
+public class Page<E> {
 
-	private List<T> list;
+	private List<E> list;
     // 查询记录总数
     private int totalRecords;
 
@@ -92,11 +92,11 @@ public class Page<T> {
         this.pageNo = pageNo;
     }
 
-	public List<T> getList() {
+	public List<E> getList() {
 		return list;
 	}
 
-	public void setList(List<T> list) {
+	public void setList(List<E> list) {
 		this.list = list;
 	}
     

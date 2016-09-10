@@ -28,7 +28,7 @@ public class ProductService implements ProductServiceI {
 
 	@SuppressWarnings({ "unused", "rawtypes", "unchecked" })
 	@Override
-	public List<Product> findProducts(int currentPage,int pageSize) {
+	public Page<Product> findProducts(int currentPage,int pageSize) {
 		Page page = new Page();
 		int allCount = productDao.getAllCount();
 		int offset=page.countOffset(currentPage, pageSize);
@@ -37,7 +37,7 @@ public class ProductService implements ProductServiceI {
         page.setPageSize(pageSize);
         page.setTotalRecords(allCount);
         page.setList(list);    
-        return page.getList();
+        return page;
 	}
 
 	@Override

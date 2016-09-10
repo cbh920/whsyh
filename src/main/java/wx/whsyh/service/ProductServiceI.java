@@ -2,10 +2,11 @@ package wx.whsyh.service;
 
 import java.util.List;
 
+import wx.basic.util.Page;
 import wx.whsyh.model.Product;
 
 public interface ProductServiceI {
-	public List<Product> findProducts(int currentPage,int pageSize);
+	public Page<Product> findProducts(int currentPage,int pageSize);
 	
 	public void addProduct(Product p);
 	

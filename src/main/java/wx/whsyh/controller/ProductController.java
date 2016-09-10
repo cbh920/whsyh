@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -11,12 +12,14 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import wx.basic.util.Page;
 import wx.whsyh.model.Product;
 import wx.whsyh.service.ProductServiceI;
 
@@ -34,14 +37,18 @@ public class ProductController {
 	public void setProductService(ProductServiceI productService) {
 		this.productService = productService;
 	}
-	@RequestMapping("/products")
+	@RequestMapping("/products.do")
 	public String list(Model model,HttpServletRequest request)
 	{
 		String pageNo = request.getParameter("pageNo");
 		if (pageNo == null) {
 			pageNo = "1";
 		}
-		model.addAttribute("datas", productService.findProducts(1,10));
+		
+		Page page = productService.findProducts(Integer.valueOf(pageNo), 10);
+		request.setAttribute("page", page);
+		List<Product> list = page.getList();
+		model.addAttribute("datas",list);
 		return "/product";
 	}
 
@@ -56,11 +63,8 @@ public class ProductController {
 	@RequestMapping(value="/add_porduct",method=RequestMethod.POST)
 	public String add(@Valid Product p,Model model,@RequestParam(value="file",required=false) MultipartFile file,HttpServletRequest request)
 	{
-		System.out.println("开始");  
 		String path = request.getSession().getServletContext().getRealPath("upload");  
 		String fileName = file.getOriginalFilename();  
-		//        String fileName = new Date().getTime()+".jpg";  
-		System.out.println(path);  
 		File targetFile = new File(path, fileName);  
 		if(!targetFile.exists()){  
 			targetFile.mkdirs();  
@@ -72,12 +76,11 @@ public class ProductController {
 		} catch (Exception e) {  
 			e.printStackTrace();  
 		}  
-		model.addAttribute("fileUrl", request.getContextPath()+"/upload/"+fileName); 
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
 		p.setCreate_date(df.format(new Date())+"");
 		p.setImg_url(request.getContextPath()+"/upload/"+fileName);
 		productService.addProduct(p);
-		return "redirect:/product/products";
+		return "redirect:/product/products.do";
 	}
 
 	@RequestMapping(value="/delete",method=RequestMethod.GET)
@@ -90,7 +93,7 @@ public class ProductController {
 			productService.deleteProduct(Integer.valueOf(ids[i]));
 		}
 
-		return "redirect:/product/products";
+		return "redirect:/product/products.do";
 
 	}
 
@@ -139,28 +142,7 @@ public class ProductController {
 		product.setProduct_type(p.getProduct_type());
 		product.setSale_price(p.getSale_price());
 		productService.updateProduct(product);
-		return "redirect:/product/products";
-	}
-	@RequestMapping(value="/upload_img")
-	public String uploadImg(@RequestParam(value="url_img",required=false) MultipartFile file,HttpServletRequest request,Model model)
-	{
-		String path = request.getSession().getServletContext().getRealPath("upload");  
-		String fileName = file.getOriginalFilename();  
-		File targetFile = new File(path, fileName);  
-		if(!targetFile.exists()){  
-			targetFile.mkdirs();  
-		}  
-
-		//保存  
-		try {  
-			file.transferTo(targetFile);  
-		} catch (Exception e) {  
-			e.printStackTrace();  
-		}  
-		model.addAttribute("fileUrl", request.getContextPath()+"/upload/"+fileName);  
-
-		return "result";  
-
+		return "redirect:/product/products.do";
 	}
 
 }
