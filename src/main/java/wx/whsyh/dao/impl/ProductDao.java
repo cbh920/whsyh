@@ -68,5 +68,19 @@ public class ProductDao extends BaseDao<Product> implements ProductDaoI {
 		return query.list();
 	}
 
+	@Override
+	public void updateProduct(Product p) {
+		getSession().update(p);
+	}
 
+	@Override
+	public Product listById(int id) {
+		String hql="from Product as p where p.id=?";
+		Session session = getSession();
+		Query query = session.createQuery(hql);
+		query.setParameter(0, id);
+		Product product = (Product) query.list().get(0);
+		return product;
+	}
+	
 }

@@ -13,4 +13,9 @@ public interface ProductDaoI extends BaseDaoI<Product> {
 	public void deleteProduct(Integer id);
 	
 	public List<Product> listByName(String name);
+	
+	public void updateProduct(Product p);
+	
+	public Product listById(int id);
+	
 }

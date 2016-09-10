@@ -73,10 +73,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<td ><span>${product.sale_price }</span></td>
 							<td ><span>${product.is_putaway }</span></td>
 							<td ><span>${product.create_date }</span></td>
-							<td ><a>[编辑]</a><a>[查看]</a></td>
+							<td ><a href="product/updata/${product.id}">[编辑]</a><a>[查看]</a></td>
 						</tr>
 						</c:forEach>
-						<input type="hidden" name="ids" />
 					</tbody>
 				</table>
 				

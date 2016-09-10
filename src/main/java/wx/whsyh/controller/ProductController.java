@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -74,4 +75,25 @@ public class ProductController {
 		return "/product_search";
 	}
 
+	@RequestMapping(value="/updata/{id}")
+	public String update(@PathVariable int id,Model model){
+		
+		model.addAttribute("p", productService.listById(id));
+		return "/product_updata";
+	}
+	@RequestMapping(value="/updata_product/{id}",method=RequestMethod.POST)
+	public String update(@Valid Product p,@PathVariable int id,Model model)
+	{
+		Product product = productService.listById(id);
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+		product.setCreate_date(df.format(new Date())+"");
+		product.setCoding(p.getCoding());
+		product.setIs_putaway(p.getIs_putaway());
+		product.setName(p.getName());
+		product.setProduct_type(p.getProduct_type());
+		product.setSale_price(p.getSale_price());
+		productService.updateProduct(product);
+		return "redirect:/product/products";
+	}
+	
 }
