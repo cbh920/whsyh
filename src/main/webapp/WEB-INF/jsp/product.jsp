@@ -41,7 +41,7 @@
 
 					</select> <select name="goods_page" onchange="changePage()" id="pages" class="goods_page left">
 						<option value="">每页显示</option>
-						<option value="10">10</option>
+						<option value="3">3</option>
 						<option value="20">20</option>
 						<option value="30">30</option>
 					</select> <input type="text" name="search_text" id="search_text" value="" />

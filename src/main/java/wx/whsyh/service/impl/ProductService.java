@@ -26,7 +26,6 @@ public class ProductService implements ProductServiceI {
 		this.productDao = productDao;
 	}
 
-	@SuppressWarnings({ "unused", "rawtypes", "unchecked" })
 	@Override
 	public Page<Product> findProducts(int currentPage,int pageSize) {
 		Page page = new Page();
