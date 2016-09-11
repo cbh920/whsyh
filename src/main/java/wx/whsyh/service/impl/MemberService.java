@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import wx.basic.util.Page;
 import wx.whsyh.dao.MemberDaoI;
 import wx.whsyh.model.Member;
 import wx.whsyh.model.Product;
@@ -26,9 +27,18 @@ public class MemberService implements MemberServiceI {
 		this.MemberDao = MemberDao;
 	}
 
+	@SuppressWarnings({ "unused", "rawtypes", "unchecked" })
 	@Override
-	public List<Member> findMembers() {
-		return MemberDao.findMembers();
+	public Page<Member> findMembers(int currentPage,int pageSize) {
+		Page page = new Page();
+		int allCount = MemberDao.getAllCount();
+		int offset=page.countOffset(currentPage, pageSize);
+		List<Member> list = MemberDao.findMembers(offset, pageSize);
+        page.setPageNo(currentPage);
+        page.setPageSize(pageSize);
+        page.setTotalRecords(allCount);
+        page.setList(list);    
+        return page;
 	}
 	
 	@Override

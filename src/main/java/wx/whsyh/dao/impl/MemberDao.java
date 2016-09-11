@@ -37,13 +37,12 @@ public class MemberDao extends BaseDao<Member> implements MemberDaoI {
 	}
 
 	@Override
-	public List<Member> findMembers() {
+	public List<Member> findMembers(int currentPage,int pageSize) {
 		Session session = this.getSession();
 		Query query = session.createQuery("from Member");
-//		Query query = session.createQuery("from Member  o where o.id=?");
-//		query.setString(0, "2");
+		query.setFirstResult(currentPage);
+		query.setMaxResults(pageSize);
 		return query.list();
-//		return this.getSession().createQuery("from Product").list();
 	}
 	
 	@Override
@@ -110,5 +109,14 @@ public class MemberDao extends BaseDao<Member> implements MemberDaoI {
 		query.setParameter(0, member_type);
 		return query.list();
 	}
+
+	@Override
+	public int getAllCount() {
+		// TODO Auto-generated method stub
+		int count=((Long) getSession().createQuery( "select count(*) from Member").iterate().next()).intValue();
+        return count;
+	}
+
+
 
 }

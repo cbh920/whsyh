@@ -88,7 +88,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<option value="白银用户">白银用户</option>
 								<option value="黄金用户">黄金用户</option>
 								<option value="铂金用户">铂金用户</option>
-								<option value="铂金用户">砖石用户</option>
+								<option value="钻石用户">钻石用户</option>
 								
 							</select>
 						</dd>

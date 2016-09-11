@@ -7,7 +7,7 @@ import wx.whsyh.model.Member;
 import wx.whsyh.model.Product;;
 
 public interface MemberDaoI extends BaseDaoI<Member> {
-	public List<Member> findMembers();
+	public List<Member> findMembers(int currentPage,int pageSize);
 	
 	public void addMember(Member p);
 	
@@ -22,4 +22,7 @@ public interface MemberDaoI extends BaseDaoI<Member> {
 	public List<Member> listByType(String member_type);
 	
 	public List<Member> listTypeAndName(String name,String type);
+	
+	public int getAllCount();
+	
 }

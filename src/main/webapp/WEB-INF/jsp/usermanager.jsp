@@ -16,15 +16,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="<%=request.getContextPath() %>/resources/js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/user.css"/>
 		<script type="text/javascript">
-$(document).ready(function(){
-	$("#selectAll").on("click",function(){
-		if($("#selectAll").attr("checked")=="checked"){
+        $(document).ready(function(){
+	    $("#selectAll").on("click",function(){
+		if($("#selectAll").attr("checked")=="checked")
+		{
 			$("[name='checkbox']").attr("checked",'true');//全选
-		}else{
+		}
+		else
+		{
 			$("[name='checkbox']").removeAttr("checked");//取消全选
 		}
-	})
-})
+		})
+		})
 
 		</script>
 	</head>
@@ -87,7 +90,40 @@ $(document).ready(function(){
 						
 					</tbody>
 				</table>
-				
+				<table class="page_table">
+				<tr>
+					<td colspan="6" align="center" >
+						
+						<a href="member/members.do?pageNo=${page.topPageNo}">
+							<input type="button" name="fristPage" value="首页" />
+						</a> 
+						<c:choose>
+							<c:when test="${page.pageNo!=1}">
+								<a href="member/members.do?pageNo=${page.previousPageNo }">
+									<input type="button" name="previousPage" value="上一页" />
+								</a>
+							</c:when>
+							<c:otherwise>
+								<input type="button" disabled="disabled" name="previousPage" value="上一页" />
+							</c:otherwise>
+						</c:choose>
+						 <c:choose>
+							<c:when test="${page.pageNo != page.totalPages}">
+								<a href="member/members.do?pageNo=${page.nextPageNo }">
+									<input type="button" name="nextPage" value="下一页" />
+								</a>
+							</c:when>
+							<c:otherwise>
+								<input type="button" disabled="disabled" name="nextPage" value="下一页" />
+							</c:otherwise>
+						</c:choose> 
+						<a href="member/members.do?pageNo=${page.bottomPageNo}">
+							<input type="button" name="lastPage" value="尾页" />
+						</a>
+						<span><br> 当前第  <span style="color:blue;">[${page.pageNo}]</span> 页     共  <span style="color:blue;">[${page.totalPages}]</span> 页 </span>
+					</td>
+				</tr>
+			</table>
 				
 				
 				

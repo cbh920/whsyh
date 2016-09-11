@@ -16,6 +16,7 @@ public class Member {
 	private String nick_name;
 	private String member_garde;
 	private String create_date;
+	private String img_url;
 	
 	
 	
@@ -64,7 +65,15 @@ public class Member {
 	public void setCreate_date(String create_date) {
 		this.create_date = create_date;
 	}
-	
+	public Member() {
+		super();
+	}
+	public String getImg_url() {
+		return img_url;
+	}
+	public void setImg_url(String img_url) {
+		this.img_url = img_url;
+	}
 	
 	public Member(int id,String name,String password, 
 			String email,String nick_name,String member_garde,String create_date) {
@@ -77,8 +86,8 @@ public class Member {
 		this.nick_name=nick_name;
 		this.member_garde=member_garde;
 		this.create_date = create_date;
+		this.img_url = img_url;
 	}
-	public Member() {
-		super();
-	}
+
+
 }
