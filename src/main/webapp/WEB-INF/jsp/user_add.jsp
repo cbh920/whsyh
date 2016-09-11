@@ -93,7 +93,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</select>
 						</dd>
 					</dl>
-
+					<dl>
+						<dt>上传图片：</dt>
+						<dd>
+							<input type="file" name="file" class="" value="浏览" />
+						</dd>
+					</dl>
 					<dl>
 						<dt>&nbsp;</dt>
 						<dd>

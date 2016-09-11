@@ -34,7 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</ul>
 		</div>
 		<div class="content">
-			<form action="member/updata_member/${p.id }" method="post">
+			<form action="member/updata_member/${p.id }" method="post" enctype="multipart/form-data">
 				<div class="table dl_border" myAttr="goods" style="display: block;">
 					<dl>
 						<dt>会员等级：</dt>
@@ -64,6 +64,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<dt>昵称：</dt>
 						<dd>
 							<input type="text" name="nick_name" class="text" value="${p.nick_name }" />
+						</dd>
+					</dl>
+					<dl>
+						<dt>修改图片：</dt>
+						<dd>
+							<input type="file" name="file" class="" value="${p.img_url }" />
 						</dd>
 					</dl>
 						<dt>&nbsp;</dt>

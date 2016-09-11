@@ -76,7 +76,7 @@ public class Member {
 	}
 	
 	public Member(int id,String name,String password, 
-			String email,String nick_name,String member_garde,String create_date) {
+			String email,String nick_name,String member_garde,String create_date, String img_url) {
 		
 		super();
 		this.id = id;

@@ -91,18 +91,37 @@ public class MemberController {
 		return "/member_updata";
 	}
 	@RequestMapping(value="/updata_member/{id}",method=RequestMethod.POST)
-	public String update(@Valid Member p,@PathVariable int id,Model model)
+	public String update(@Valid Member p,@PathVariable int id,@RequestParam(value="file",required=false) MultipartFile file,Model model,HttpServletRequest request)
 	{
+		String path = request.getSession().getServletContext().getRealPath("upload");  
+		String fileName = file.getOriginalFilename();  
+		File targetFile = new File(path, fileName);  
+		if(!targetFile.exists()){  
+			targetFile.mkdirs();  
+		}  
+
+		//保存  
+		try {  
+			file.transferTo(targetFile);  
+		} catch (Exception e) {  
+			e.printStackTrace();  
+		} 
+		
 		Member Member = MemberService.listById(id);
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-		Member.setCreate_date(df.format(new Date())+"");
-	
+		
+//		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+//		Member.setCreate_date(df.format(new Date())+"");
+		
 		Member.setName(p.getName());
 		Member.setPassword(p.getPassword());
 		Member.setEmail(p.getEmail());
 		Member.setNick_name(p.getNick_name());
 		Member.setMember_garde(p.getMember_garde());
-		Member.setCreate_date(p.getCreate_date());
+		//Member.setCreate_date(p.getCreate_date());
+		if(fileName!="")
+		{
+			Member.setImg_url(request.getContextPath()+"/upload/"+fileName);
+		}
 		MemberService.updateMember(Member);
 		return "redirect:/member/members.do";
 	}
