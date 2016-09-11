@@ -37,6 +37,10 @@ $(document).ready(function(){
 	$(lis[0]).live("click",function(){
 		$(".menu_right").html("<iframe src='order/orders.do' width='' height='' frameborder='0'></iframe>");
 	});
+	$(lis[1]).live("click",function(){
+		$(".menu_right").html("<iframe src='order/sent' width='' height='' frameborder='0'></iframe>");
+	});
+	
 });
 //会员管理页面跳转
 $(document).ready(function(){
