@@ -107,7 +107,7 @@
 						<a href="product/products.do?pageNo=${page.bottomPageNo}">
 							<input type="button" name="lastPage" value="尾页" />
 						</a>
-						<span><br> 当前第  <span style="color:blue;">[${page.pageNo}]</span> 页     共  <span style="color:blue;">[${page.totalPages}]</span> 页 </span>
+						<div style="float:left; margin-left:-405px;margin-top:-46px;font-size:14px;color:#CDC673;width:150px;font-family:'微软雅黑';"><span><br> 当前第  <span style="color:blue;">[${page.pageNo}]</span> 页   | 共  <span style="color:blue;">[${page.totalPages}]</span> 页 </span></div>
 					</td>
 				</tr>
 			</table>
