@@ -43,7 +43,7 @@ $(document).ready(function(){
 	var lis=$(".member a");
 //	alert(lis.length);
 	$(lis[0]).live("click",function(){
-		$(".menu_right").html("<iframe src='member/members' width='' height='' frameborder='0'></iframe>");
+		$(".menu_right").html("<iframe src='member/members.do' width='' height='' frameborder='0'></iframe>");
 	});
 });
 

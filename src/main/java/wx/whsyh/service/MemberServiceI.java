@@ -2,11 +2,12 @@ package wx.whsyh.service;
 
 import java.util.List;
 
+import wx.basic.util.Page;
 import wx.whsyh.model.Member;
-import wx.whsyh.model.Product;
+
 
 public interface MemberServiceI {
-	public List<Member> findMembers();
+	public Page<Member> findMembers(int currentPage,int pageSize);
 	
 	public void addMember(Member p);
 	
