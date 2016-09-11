@@ -163,5 +163,50 @@ public class ProductController {
 		productService.updateProduct(product);
 		return "redirect:/product/products.do";
 	}
+	
+	
+	@RequestMapping(value="/stock")
+	public String jump_stock(Model model,HttpServletRequest request)
+	{
+		String pageNo = request.getParameter("pageNo");
+		if (pageNo == null) {
+			pageNo = "1";
+		}
+		
+		String page_size = request.getParameter("page_size");
+		if(page_size==null || page_size.equals(""))
+		{
+			page_size = "10";
+		}
+		Page page = productService.findProducts(Integer.valueOf(pageNo), Integer.valueOf(page_size));
+		request.setAttribute("page", page);
+		List<Product> list = page.getList();
+		model.addAttribute("stock",list);
+		return "/product_stock";
+	}
+	@RequestMapping(value="/stock_in")
+	public String stock_in()
+	{
+
+		return "/stock_in";
+
+	}
+	@RequestMapping(value="/stock_out")
+	public String stock_out()
+	{
+
+		return "/stock_out";
+
+	}
+	@RequestMapping(value="/stock_search",method=RequestMethod.POST)
+	public String stockByName(HttpServletRequest request,Model model) throws UnsupportedEncodingException
+	{
+		
+		String name = request.getParameter("text");
+		
+		model.addAttribute("listname", productService.listByName(name));
+		
+		return "/stock_in";
+	}
 
 }

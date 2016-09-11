@@ -9,9 +9,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html>
 <html>
 	<head>
+		<base href="<%=basePath%>">
 		<meta charset="UTF-8">
 		<title></title>
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/stock_in.css"/>
+		<script
+	src="<%=request.getContextPath() %>/resources/js/jquery-1.8.3.min.js"
+	type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
 		<div class="container">
@@ -19,11 +23,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<a>首页</a>》
 				<span>入库</span>
 			</div>
+			<form action="" method="post">
 			<div class="content">
 				<dl>
 					<dt>商品选择:</dt>
-					<dd><input type="text" name="text" class="text" value="" /></dd>
+					<dd><input type="text" name="search_text" id="search_btn" class="text" value="" /></dd>
 				</dl>
+				
 				<dl>
 					<dt>数量:</dt>
 					<dd><input type="text" name="text" class="text" value="" /></dd>
@@ -36,10 +42,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<dt>&nbsp;</dt>
 					<dd>
 						<input type="submit" class="button" value="确 定">
-						<input type="button" class="button" value="返 回">
+						<input type="button" id="aaa" class="button" value="返 回">
 					</dd>
 				</dl>
 			</div>
+			</form>
 		</div>
 	</body>
+	<script>
+	$(document).ready(function(){
+	
+	$("#search_btn").on("blur",function(){
+		
+		var text = $("#search_btn").val();
+		$.ajax({
+			url : 'product/stock_search',
+			type : 'post',
+			data : {
+				text : text
+			},
+			traditional : true,
+			success : function(data) {
+				alert("成功");
+				$(".info").show();
+				window.location.reload();
+			},
+			error : function(data) {
+				alert("失败");
+			}
+		});
+	});
+	
+	
+	});
+	
+	</script>
+	
 </html>

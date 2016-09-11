@@ -9,6 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html>
 <html>
 	<head>
+		<base href="<%=basePath%>">
 		<meta charset="UTF-8">
 		<title></title>
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/product_stock.css"/>
@@ -23,10 +24,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="list">
 				<ul>
 					<li class="list_add">
-						<a href="stock_in.html">入库</a>
+						<a href="product/stock_in">入库</a>
 					</li>
 					<li>
-						<a href="stock_out.html">出库</a>	
+						<a href="product/stock_out">出库</a>	
 					</li>
 					<li>刷新</li>
 					<select name="goods_page" class="goods_page">
@@ -46,29 +47,62 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<th ><a class="sort" >编号</a></th>
 							<th ><a class="sort" >商品</a></th>
 							<th ><a class="sort" >类型</a></th>
+							<th ><a class="sort" >当前库存</a></th>
 							<th ><a class="sort" >入库数量</a></th>
 							<th ><a class="sort" >出库数量</a></th>
-							<th ><a class="sort" >出库数量</a></th>
-							<th ><a class="sort" >出库数量</a></th>
-							<th><span>操作</span></th>
-						</tr>
-						<tr>
+							<th ><a class="sort" >创建日期</a></th>
 							
-							<td ><span>20150211</span></td>
-							<td >
-								<span title="索尼 KDL-50W700B">
-									索尼 KDL-50W700B
-								</span>
-								<span class="promotion" title="平板电视促销专场">返券促销</span>
-							</td>
-							<td ><span>平板电视</span></td>
-							<td ><span>￥4688.00</span></td>
-							<td ><span>是</span></td>
-							<td ><a>[编辑]</a><a>[查看]</a></td>
 						</tr>
+						<c:forEach items="${stock }" var="product">
+							<tr>
+								
+								<td><span>${product.coding }</span></td>
+								<td><span>${product.name }</span></td>
+								<td><span>${product.product_type }</span></td>
+								<td><span>${product.stock }</span></td>
+								<td><span>${product.stock_in }</span></td>
+								<td><span>${product.stock_out }</span></td>
+								<td><span>${product.create_date }</span></td>
+								
+							</tr>
+						</c:forEach>
+						
 					</tbody>
 				</table>
-				
+				<table class="page_table">
+				<tr>
+					<td colspan="6" align="center" >
+						
+						<a href="product/stock?pageNo=${page.topPageNo}">
+							<input type="button" name="fristPage" value="首页" />
+						</a> 
+						<c:choose>
+							<c:when test="${page.pageNo!=1}">
+								<a href="product/stock?pageNo=${page.previousPageNo }">
+									<input type="button" name="previousPage" value="上一页" />
+								</a>
+							</c:when>
+							<c:otherwise>
+								<input type="button" disabled="disabled" name="previousPage" value="上一页" />
+							</c:otherwise>
+						</c:choose>
+						 <c:choose>
+							<c:when test="${page.pageNo != page.totalPages}">
+								<a href="product/stock?pageNo=${page.nextPageNo }">
+									<input type="button" name="nextPage" value="下一页" />
+								</a>
+							</c:when>
+							<c:otherwise>
+								<input type="button" disabled="disabled" name="nextPage" value="下一页" />
+							</c:otherwise>
+						</c:choose> 
+						<a href="product/stock?pageNo=${page.bottomPageNo}">
+							<input type="button" name="lastPage" value="尾页" />
+						</a>
+						<div style="float:left; margin-left:-405px;margin-top:-46px;font-size:14px;color:#CDC673;width:150px;font-family:'微软雅黑';"><span><br> 当前第  <span style="color:blue;">[${page.pageNo}]</span> 页   | 共  <span style="color:blue;">[${page.totalPages}]</span> 页 </span></div>
+					</td>
+				</tr>
+			</table>
 				
 				
 				
