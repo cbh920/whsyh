@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -26,7 +27,7 @@ public class Order {
 	private String state;
 	private String create_date;
 	private List<Product> product;//一个订单对应多个商品
-	
+	private Member member_name;//一个订单对应一个会员
 	
 	@Id
 	@GeneratedValue
@@ -94,6 +95,16 @@ public class Order {
 	public void setProduct(List<Product> product) {
 		this.product = product;
 	}
+	
+	@ManyToOne(cascade=CascadeType.REFRESH,fetch=FetchType.EAGER)  
+	@JoinColumn(name="member_id")  
+	public Member getMember_name() {
+		return member_name;
+	}
+	public void setMember_name(Member member_name) {
+		this.member_name = member_name;
+	}
+	
 	public Order(int id, String coding, String money, String member, String receiver,
 			String payment_method,String send_method,String state,String create_date) {
 		
@@ -111,6 +122,7 @@ public class Order {
 	public Order() {
 		super();
 	}
+	
 	
 	
 	

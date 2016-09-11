@@ -1,8 +1,11 @@
 package wx.whsyh.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -17,7 +20,7 @@ public class Member {
 	private String member_garde;
 	private String create_date;
 	private String img_url;
-	
+	private List<Order> order;//一个会员对应多个订单
 	
 	
 	@Id
@@ -75,6 +78,14 @@ public class Member {
 		this.img_url = img_url;
 	}
 	
+	@OneToMany(mappedBy="member")  
+	public List<Order> getOrder() {
+		return order;
+	}
+	public void setOrder(List<Order> order) {
+		this.order = order;
+	}
+	
 	public Member(int id,String name,String password, 
 			String email,String nick_name,String member_garde,String create_date, String img_url) {
 		
@@ -88,6 +99,7 @@ public class Member {
 		this.create_date = create_date;
 		this.img_url = img_url;
 	}
+	
 
 
 }
