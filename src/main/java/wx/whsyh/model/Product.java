@@ -17,7 +17,23 @@ public class Product {
 	private String is_putaway;
 	private String create_date;
 	private String img_url;
+	private String stock;
+	private String stock_in;
+	private String stock_out;
 	
+	
+	public String getStock_in() {
+		return stock_in;
+	}
+	public void setStock_in(String stock_in) {
+		this.stock_in = stock_in;
+	}
+	public String getStock_out() {
+		return stock_out;
+	}
+	public void setStock_out(String stock_out) {
+		this.stock_out = stock_out;
+	}
 	@Id
 	@GeneratedValue
 	public int getId() {
@@ -72,7 +88,7 @@ public class Product {
 
 	public Product(int id, String coding, String name, String product_type,
 			String sale_price, String is_putaway, String create_date,
-			String img_url) {
+			String img_url,String stock,String stock_in,String stock_out) {
 		super();
 		this.id = id;
 		this.coding = coding;
@@ -82,9 +98,18 @@ public class Product {
 		this.is_putaway = is_putaway;
 		this.create_date = create_date;
 		this.img_url = img_url;
+		this.stock = stock;
+		this.stock_in = stock_in;
+		this.stock_out = stock_out;
 	}
 	public Product() {
 		super();
+	}
+	public String getStock() {
+		return stock;
+	}
+	public void setStock(String stock) {
+		this.stock = stock;
 	}
 	
 }
