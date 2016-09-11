@@ -1,8 +1,15 @@
 package wx.whsyh.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -18,7 +25,7 @@ public class Order {
 	private String send_method;
 	private String state;
 	private String create_date;
-	
+	private List<Product> product;//一个订单对应多个商品
 	
 	
 	@Id
@@ -79,7 +86,14 @@ public class Order {
 		this.state = state;
 	}
 	
-	
+	@ManyToMany(cascade=CascadeType.REFRESH,fetch=FetchType.EAGER)  
+	@JoinTable(name="t_order_product",joinColumns={@JoinColumn(name="order_id")},inverseJoinColumns={@JoinColumn(name="product_id")})  
+	public List<Product> getProduct() {
+		return product;
+	}
+	public void setProduct(List<Product> product) {
+		this.product = product;
+	}
 	public Order(int id, String coding, String money, String member, String receiver,
 			String payment_method,String send_method,String state,String create_date) {
 		
@@ -97,5 +111,7 @@ public class Order {
 	public Order() {
 		super();
 	}
+	
+	
 	
 }

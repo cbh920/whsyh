@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.sun.mail.iap.Response;
+
 import wx.basic.util.Page;
 import wx.whsyh.model.Product;
 import wx.whsyh.service.ProductServiceI;
@@ -184,7 +186,7 @@ public class ProductController {
 		model.addAttribute("stock",list);
 		return "/product_stock";
 	}
-	@RequestMapping(value="/stock_in")
+	@RequestMapping(value="/stock_ins")
 	public String stock_in()
 	{
 
@@ -204,9 +206,12 @@ public class ProductController {
 		
 		String name = request.getParameter("text");
 		
-		model.addAttribute("listname", productService.listByName(name));
+		int stockLength=productService.listByName(name).size();
+		model.addAttribute("liststock", productService.listByName(name));
 		
-		return "/stock_in";
+		return "redirect:/product/stock_ins";
+		
+		//return "/stock_in";
 	}
 
 }
