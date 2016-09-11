@@ -109,4 +109,12 @@ public class OrderController {
 		model.addAttribute("show", orderService.listById(id));
 		return "/order_show";
 	}
+	
+	@RequestMapping(value="/sent")
+	public String sent()
+	{
+
+		return "/order_sent";
+
+	}
 }
