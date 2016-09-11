@@ -43,6 +43,9 @@ $(document).ready(function(){
 	$(lis[1]).live("click",function(){
 		$(".menu_right").html("<iframe src='order/sent' width='' height='' frameborder='0'></iframe>");
 	});
+	$(lis[2]).live("click",function(){
+		$(".menu_right").html("<iframe src='order/return' width='' height='' frameborder='0'></iframe>");
+	});
 	
 });
 //会员管理页面跳转
