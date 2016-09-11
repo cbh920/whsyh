@@ -1,9 +1,8 @@
 package wx.whsyh.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.List;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -15,9 +14,11 @@ public class User {
 	private String sex;
 	private String tel;
 	private String address;
+	private List<Role> roleList;//一个用户具有多个角色  
+
 	
 	public User(int id, String name, String password, String sex, String tel,
-			String address) {
+			String address, List<Role> roleList) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -25,8 +26,9 @@ public class User {
 		this.sex = sex;
 		this.tel = tel;
 		this.address = address;
+		this.roleList = roleList;
 	}
-	
+
 	public User() {
 		super();
 	}
@@ -39,7 +41,7 @@ public class User {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	@NotNull(message="用户名不能为空")
 	public String getName() {
 		return name;
@@ -47,7 +49,7 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	@NotNull(message="密码不能为空")
 	public String getPassword() {
 		return password;
@@ -56,7 +58,7 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 
 	public String getSex() {
 		return sex;
@@ -76,4 +78,16 @@ public class User {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
+	@ManyToMany(cascade=CascadeType.REFRESH,fetch=FetchType.EAGER)  
+	@JoinTable(name="t_user_role",joinColumns={@JoinColumn(name="user_id")},inverseJoinColumns={@JoinColumn(name="role_id")}) 
+	public List<Role> getRoleList() {
+		return roleList;
+	}
+	 
+	public void setRoleList(List<Role> roleList) {
+		this.roleList = roleList;
+	}
+
+
 }

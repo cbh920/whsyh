@@ -12,7 +12,7 @@ import wx.whsyh.model.Member;
 import wx.whsyh.model.Product;
 import wx.whsyh.service.MemberServiceI;
 
-@Service("MemberService")
+@Service("memberService")
 @Transactional
 public class MemberService implements MemberServiceI {
 

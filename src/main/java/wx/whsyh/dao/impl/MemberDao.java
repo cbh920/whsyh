@@ -10,10 +10,9 @@ import org.springframework.stereotype.Repository;
 import wx.basic.dao.BaseDao;
 import wx.whsyh.dao.MemberDaoI;
 import wx.whsyh.model.Member;
-import wx.whsyh.model.Product;;
 
 @SuppressWarnings("unchecked")
-@Repository("MemberDao")
+@Repository("memberDao")
 public class MemberDao extends BaseDao<Member> implements MemberDaoI {
 
 	@Override
