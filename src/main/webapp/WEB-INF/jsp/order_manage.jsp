@@ -34,7 +34,7 @@ $(document).ready(function(){
 			<div class="head">
 				<a>首页</a>》
 				<span>订单列表</span>
-				<span>(共10条记录)</span>
+				<span>(共${page.totalRecords}条记录)</span>
 			</div>
 			<div class="list">
 				<ul>
@@ -83,14 +83,48 @@ $(document).ready(function(){
 							<td ><span>${order.send_method}</span></td>
 							<td ><span>${order.state}</span></td>
 							<td ><span>${order.create_date}</span></td>
-							<td ><a href="order/updata/${order.id}">[编辑]</a><a>[查看]</a></td>
+							<td ><a href="order/updata/${order.id}">[编辑]</a><a
+								href="order/show/${order.id}">[查看]</a></td>
 						</tr>
 						</c:forEach>
 						
 						
 					</tbody>
 				</table>
-				
+				<table class="page_table">
+				<tr>
+					<td colspan="6" align="center" >
+						
+						<a href="order/orders.do?pageNo=${page.topPageNo}">
+							<input type="button" name="fristPage" value="首页" />
+						</a> 
+						<c:choose>
+							<c:when test="${page.pageNo!=1}">
+								<a href="order/orders.do?pageNo=${page.previousPageNo }">
+									<input type="button" name="previousPage" value="上一页" />
+								</a>
+							</c:when>
+							<c:otherwise>
+								<input type="button" disabled="disabled" name="previousPage" value="上一页" />
+							</c:otherwise>
+						</c:choose>
+						 <c:choose>
+							<c:when test="${page.pageNo != page.totalPages}">
+								<a href="order/orders.do?pageNo=${page.nextPageNo }">
+									<input type="button" name="nextPage" value="下一页" />
+								</a>
+							</c:when>
+							<c:otherwise>
+								<input type="button" disabled="disabled" name="nextPage" value="下一页" />
+							</c:otherwise>
+						</c:choose> 
+						<a href="order/orders.do?pageNo=${page.bottomPageNo}">
+							<input type="button" name="lastPage" value="尾页" />
+						</a>
+						<span><br> 当前第  <span style="color:blue;">[${page.pageNo}]</span> 页     共  <span style="color:blue;">[${page.totalPages}]</span> 页 </span>
+					</td>
+				</tr>
+			</table>
 				
 				
 				

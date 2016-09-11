@@ -35,7 +35,7 @@ $(document).ready(function(){
 	var lis=$(".order a");
 //	alert(lis.length);
 	$(lis[0]).live("click",function(){
-		$(".menu_right").html("<iframe src='order/orders' width='' height='' frameborder='0'></iframe>");
+		$(".menu_right").html("<iframe src='order/orders.do' width='' height='' frameborder='0'></iframe>");
 	});
 });
 //会员管理页面跳转

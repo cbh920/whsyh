@@ -3,6 +3,7 @@ package wx.whsyh.controller;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import wx.basic.util.Page;
 import wx.whsyh.model.Order;
 import wx.whsyh.model.Product;
 import wx.whsyh.service.OrderServiceI;
@@ -32,10 +34,18 @@ public class OrderController {
 	public void setOrderService(OrderServiceI orderService) {
 		this.orderService = orderService;
 	}
-	@RequestMapping("/orders")
-	public String list(Model model)
+	@RequestMapping("/orders.do")
+	public String list(Model model,HttpServletRequest request)
 	{
-		model.addAttribute("orders", orderService.findOrders());
+		String pageNo = request.getParameter("pageNo");
+		if (pageNo == null) {
+			pageNo = "1";
+		}
+		
+		Page page = orderService.findOrders(Integer.valueOf(pageNo), 10);
+		request.setAttribute("page", page);
+		List<Order> list = page.getList();
+		model.addAttribute("orders", list);
 		return "/order_manage";
 	}
 	@RequestMapping(value="/delete",method=RequestMethod.GET)
@@ -48,7 +58,7 @@ public class OrderController {
 			orderService.deleteOrder(Integer.valueOf(ids[i]));
 		}
 
-		return "redirect:/order/orders";
+		return "redirect:/order/orders.do";
 
 	}
 	@RequestMapping(value="/list_name",method=RequestMethod.POST)
@@ -90,6 +100,13 @@ public class OrderController {
         order.setSend_method(o.getSend_method());
         order.setState(o.getState());
 		orderService.updateOrder(order);
-		return "redirect:/order/orders";
+		return "redirect:/order/orders.do";
+	}
+	
+	@RequestMapping(value="/show/{id}")
+	public String show(@PathVariable int id,Model model){
+
+		model.addAttribute("show", orderService.listById(id));
+		return "/order_show";
 	}
 }

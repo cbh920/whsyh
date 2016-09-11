@@ -2,11 +2,12 @@ package wx.whsyh.service;
 
 import java.util.List;
 
+import wx.basic.util.Page;
 import wx.whsyh.model.Order;
 import wx.whsyh.model.Product;
 
 public interface OrderServiceI {
-	public List<Order> findOrders();
+	public Page<Product> findOrders(int currentPage,int pageSize);
 	
 	public void deleteOrder(Integer id);
 	

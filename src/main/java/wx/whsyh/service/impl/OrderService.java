@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import wx.basic.util.Page;
 import wx.whsyh.dao.OrderDaoI;
 import wx.whsyh.model.Order;
 import wx.whsyh.model.Product;
@@ -26,9 +27,18 @@ public class OrderService implements OrderServiceI {
 		this.orderDao = orderDao;
 	}
 
+	@SuppressWarnings({ "unused", "rawtypes", "unchecked" })
 	@Override
-	public List<Order> findOrders() {
-		return orderDao.findOrders();
+	public Page<Product> findOrders(int currentPage,int pageSize) {
+		Page page = new Page();
+		int allCount = orderDao.getAllCount();
+		int offset=page.countOffset(currentPage, pageSize);
+		List<Order> list = orderDao.findOrders(offset, pageSize);
+        page.setPageNo(currentPage);
+        page.setPageSize(pageSize);
+        page.setTotalRecords(allCount);
+        page.setList(list);    
+        return page;
 	}
 	
 	@Override

@@ -21,8 +21,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="container">
 			<div class="head">
 				<a>首页</a>
-				<span>商品管理</span>
-				<span>(共40条记录)</span>
+				<span>订单管理</span>
+				<span>(共${page.totalRecords}条记录)</span>
 			</div>
 			<div class="list">
 				<ul>

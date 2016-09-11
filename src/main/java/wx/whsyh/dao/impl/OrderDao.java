@@ -37,11 +37,12 @@ public class OrderDao extends BaseDao<Order> implements OrderDaoI {
 	}
 
 	@Override
-	public List<Order> findOrders() {
+	public List<Order> findOrders(int currentPage,int pageSize) {
 		Session session = this.getSession();
 		Query query = session.createQuery("from Order");
 //		Query query = session.createQuery("from Order  o where o.id=?");
-//		query.setString(0, "2");
+		query.setFirstResult(currentPage);
+		query.setMaxResults(pageSize);
 		return query.list();
 //		return this.getSession().createQuery("from Product").list();
 	}
@@ -99,5 +100,11 @@ public class OrderDao extends BaseDao<Order> implements OrderDaoI {
 		Query query= session.createQuery(hql);
 		query.setParameter(0, type);
 		return query.list();
+	}
+	
+	@Override
+	public int getAllCount() {
+		int count=((Long) getSession().createQuery( "select count(*) from Order").iterate().next()).intValue();
+        return count;  
 	}
 }

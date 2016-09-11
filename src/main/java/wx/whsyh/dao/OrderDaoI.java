@@ -7,7 +7,7 @@ import wx.whsyh.model.Order;
 import wx.whsyh.model.Product;
 
 public interface OrderDaoI extends BaseDaoI<Order> {
-	public List<Order> findOrders();
+	public List<Order> findOrders(int currentPage,int pageSize);
 	
 	public void deleteOrder(Integer id);
 	
@@ -20,4 +20,6 @@ public interface OrderDaoI extends BaseDaoI<Order> {
 	public List<Order> listTypeAndName(String name,String type);
 	
 	public List<Order> listByType(String type);
+	
+	public int getAllCount();
 }
