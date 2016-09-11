@@ -41,7 +41,7 @@
 
 					</select> <select name="goods_page" onchange="changePage()" id="pages" class="goods_page left">
 						<option value="">每页显示</option>
-						<option value="10">10</option>
+						<option value="3">3</option>
 						<option value="20">20</option>
 						<option value="30">30</option>
 					</select> <input type="text" name="search_text" id="search_text" value="" />
@@ -57,6 +57,7 @@
 						<th><a class="sort" name="product_name">名称</a></th>
 						<th><a class="sort" name="productCategory">商品分类</a></th>
 						<th><a class="sort" name="price">销售价</a></th>
+						<th><a class="sort" name="stock">库存量</a></th>
 						<th><a class="sort" name="isMarketable">是否上架</a></th>
 						<th><a class="sort" name="createDate">创建日期</a></th>
 						<th><span>操作</span></th>
@@ -69,6 +70,7 @@
 							<td><span>${product.name }</span></td>
 							<td><span>${product.product_type }</span></td>
 							<td><span>${product.sale_price }</span></td>
+							<td><span>${product.stock }</span></td>
 							<td><span>${product.is_putaway }</span></td>
 							<td><span>${product.create_date }</span></td>
 							<td><a href="product/updata/${product.id}">[编辑]</a><a

@@ -28,6 +28,9 @@ $(document).ready(function(){
 	$(lis[0]).live("click",function(){
 		$(".menu_right").html("<iframe src='product/products.do' width='' height='' frameborder='0'></iframe>");
 	});
+	$(lis[1]).live("click",function(){
+		$(".menu_right").html("<iframe src='product/stock' width='' height='' frameborder='0'></iframe>");
+	});
 });
 
 //订单管理页面跳转
@@ -43,7 +46,7 @@ $(document).ready(function(){
 	var lis=$(".member a");
 //	alert(lis.length);
 	$(lis[0]).live("click",function(){
-		$(".menu_right").html("<iframe src='member/members' width='' height='' frameborder='0'></iframe>");
+		$(".menu_right").html("<iframe src='member/members.do' width='' height='' frameborder='0'></iframe>");
 	});
 });
 
