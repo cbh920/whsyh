@@ -45,7 +45,12 @@ public class ProductController {
 			pageNo = "1";
 		}
 		
-		Page page = productService.findProducts(Integer.valueOf(pageNo), 10);
+		String page_size = request.getParameter("page_size");
+		if(page_size==null || page_size.equals(""))
+		{
+			page_size = "10";
+		}
+		Page page = productService.findProducts(Integer.valueOf(pageNo), Integer.valueOf(page_size));
 		request.setAttribute("page", page);
 		List<Product> list = page.getList();
 		model.addAttribute("datas",list);
@@ -131,8 +136,21 @@ public class ProductController {
 	}
 
 	@RequestMapping(value="/updata_product/{id}",method=RequestMethod.POST)
-	public String update(@Valid Product p,@PathVariable int id,Model model)
+	public String update(@Valid Product p,@PathVariable int id,@RequestParam(value="file",required=false) MultipartFile file,Model model,HttpServletRequest request)
 	{
+		String path = request.getSession().getServletContext().getRealPath("upload");  
+		String fileName = file.getOriginalFilename();  
+		File targetFile = new File(path, fileName);  
+		if(!targetFile.exists()){  
+			targetFile.mkdirs();  
+		}  
+
+		//保存  
+		try {  
+			file.transferTo(targetFile);  
+		} catch (Exception e) {  
+			e.printStackTrace();  
+		}  
 		Product product = productService.listById(id);
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
 		product.setCreate_date(df.format(new Date())+"");
@@ -141,6 +159,7 @@ public class ProductController {
 		product.setName(p.getName());
 		product.setProduct_type(p.getProduct_type());
 		product.setSale_price(p.getSale_price());
+		product.setImg_url(request.getContextPath()+"/upload/"+fileName);
 		productService.updateProduct(product);
 		return "redirect:/product/products.do";
 	}

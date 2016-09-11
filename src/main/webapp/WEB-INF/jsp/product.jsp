@@ -39,11 +39,11 @@
 						<option value="手机">手机</option>
 						<option value="对讲机">对讲机</option>
 
-					</select> <select name="goods_page" class="goods_page left">
-						<option value="1">每页显示</option>
-						<option value="2">10</option>
-						<option value="2">20</option>
-						<option value="3">50</option>
+					</select> <select name="goods_page" onchange="changePage()" id="pages" class="goods_page left">
+						<option value="">每页显示</option>
+						<option value="10">10</option>
+						<option value="20">20</option>
+						<option value="30">30</option>
 					</select> <input type="text" name="search_text" id="search_text" value="" />
 					<input type="submit" name="search" id="search" value="查找" />
 				</form>
@@ -141,5 +141,23 @@
 			}
 		});
 	});
+	
+	function changePage()
+	{
+		var page_size = $("#pages").val();
+		$.ajax({
+			url : 'product/products.do',
+			type : 'get',
+			data : {
+				'page_size' : page_size
+			},
+			success : function(data) {
+				window.location.reload();
+			},
+			error : function(data) {
+				alert("删除失败");
+			}
+		});
+	}
 </script>
 </html>
