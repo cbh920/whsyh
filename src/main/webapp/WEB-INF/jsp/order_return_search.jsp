@@ -38,11 +38,11 @@ $(document).ready(function(){
 				<span>(共${page.totalRecords}条记录)</span>
 			</div>
 			<div class="list">
+			
 				<ul>
 					<form action="order/list_name2" method="post" class="left">
 					<li><a href="javascript:" id="deleteBtn">删除</a></li>
 					<li>刷新</li>
-					
 					<select name="goods_page" class="goods_page">
 							<option value="1">每页显示</option>
 							<option value="2">10</option>
@@ -80,41 +80,6 @@ $(document).ready(function(){
 						</c:forEach>
 					</tbody>
 				</table>
-				
-				<table class="page_table">
-				<tr>
-					<td colspan="6" align="center" >
-						
-						<a href="order.return?pageNo=${page.topPageNo}">
-							<input type="button" name="fristPage" value="首页" />
-						</a> 
-						<c:choose>
-							<c:when test="${page.pageNo!=1}">
-								<a href="order/return?pageNo=${page.previousPageNo }">
-									<input type="button" name="previousPage" value="上一页" />
-								</a>
-							</c:when>
-							<c:otherwise>
-								<input type="button" disabled="disabled" name="previousPage" value="上一页" />
-							</c:otherwise>
-						</c:choose>
-						 <c:choose>
-							<c:when test="${page.pageNo != page.totalPages}">
-								<a href="order/return?pageNo=${page.nextPageNo }">
-									<input type="button" name="nextPage" value="下一页" />
-								</a>
-							</c:when>
-							<c:otherwise>
-								<input type="button" disabled="disabled" name="nextPage" value="下一页" />
-							</c:otherwise>
-						</c:choose> 
-						<a href="order/return?pageNo=${page.bottomPageNo}">
-							<input type="button" name="lastPage" value="尾页" />
-						</a>
-						<span><br> 当前第  <span style="color:blue;">[${page.pageNo}]</span> 页     共  <span style="color:blue;">[${page.totalPages}]</span> 页 </span>
-					</td>
-				</tr>
-			</table>
 				
 				
 				

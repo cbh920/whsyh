@@ -28,7 +28,10 @@ public class Order {
 	private String create_date;
 	private List<Product> product;//一个订单对应多个商品
 	private Member member_name;//一个订单对应一个会员
-	
+	private String logistics;
+	private String waybill;
+
+
 	@Id
 	@GeneratedValue
 	public int getId() {
@@ -86,6 +89,18 @@ public class Order {
 	public void setState(String state) {
 		this.state = state;
 	}
+	public String getLogistics() {
+		return logistics;
+	}
+	public void setLogistics(String logistics) {
+		this.logistics = logistics;
+	}
+	public String getWaybill() {
+		return waybill;
+	}
+	public void setWaybill(String waybill) {
+		this.waybill = waybill;
+	}
 	
 	@ManyToMany(cascade=CascadeType.REFRESH,fetch=FetchType.EAGER)  
 	@JoinTable(name="t_order_product",joinColumns={@JoinColumn(name="order_id")},inverseJoinColumns={@JoinColumn(name="product_id")})  
@@ -106,7 +121,7 @@ public class Order {
 	}
 	
 	public Order(int id, String coding, String money, String member, String receiver,
-			String payment_method,String send_method,String state,String create_date) {
+			String payment_method,String send_method,String state,String create_date,String logistics,String waybill) {
 		
 	
 		this.id = id;
@@ -118,6 +133,8 @@ public class Order {
 		this.send_method=send_method;
 		this.state=state;
 		this.create_date = create_date;
+		this.logistics = logistics;
+		this.waybill = waybill;
 	}
 	public Order() {
 		super();

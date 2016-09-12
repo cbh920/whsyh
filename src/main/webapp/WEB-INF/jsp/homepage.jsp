@@ -51,7 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<dl class="product" myAttr="product" style="display: none;"> 
 												<dd><a class="good_manager" style="font-weight:normal;">商品管理</a></dd>
 												<dd><a class="stock_manager">库存管理</a></dd>
-												<dd><a class="good_param">商品参数</a></dd>
+												
 											</dl>
 										</li>
 										<li><a class="nav2" myAttr="order">订单管理</a>
@@ -64,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<li><a class="nav2">会员管理</a>
 											<dl class="member" style="display: none;">
 												<dd><a>会员管理</a></dd>
-												<dd><a>会员等级</a></dd>
+												
 											</dl>
 										</li>
 										
