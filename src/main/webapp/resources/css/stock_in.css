@@ -66,3 +66,9 @@ a:hover{
     border: 1px solid #B7D3E1;
     border-radius: 5px;
 }
+.info{
+	
+}
+.info dl{
+	height:30px;
+}

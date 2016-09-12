@@ -1,8 +1,15 @@
 package wx.whsyh.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -20,7 +27,7 @@ public class Product {
 	private String stock;
 	private String stock_in;
 	private String stock_out;
-	
+	private List<Order> order;//一个商品对应多个订单
 	
 	public String getStock_in() {
 		return stock_in;
@@ -85,7 +92,15 @@ public class Product {
 	public void setImg_url(String img_url) {
 		this.img_url = img_url;
 	}
-
+	@ManyToMany(cascade=CascadeType.REFRESH,fetch=FetchType.EAGER)  
+	@JoinTable(name="t_order_product",joinColumns={@JoinColumn(name="product_id")},inverseJoinColumns={@JoinColumn(name="order_id")}) 
+	public List<Order> getOrder() {
+		return order;
+	}
+	public void setOrder(List<Order> order) {
+		this.order = order;
+	}
+	
 	public Product(int id, String coding, String name, String product_type,
 			String sale_price, String is_putaway, String create_date,
 			String img_url,String stock,String stock_in,String stock_out) {
@@ -111,5 +126,7 @@ public class Product {
 	public void setStock(String stock) {
 		this.stock = stock;
 	}
+	
+	
 	
 }

@@ -30,6 +30,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<dd><input type="text" name="search_text" id="search_btn" class="text" value="" /></dd>
 				</dl>
 				
+				<div class="info" style="display:none;">
+					<dl>
+						<dt>编号:</dt>
+						<dd>${stockLength}</dd>
+					</dl>
+					<dl>
+						<dt>名称:</dt>
+						<dd>${liststock.name} </dd>
+					</dl>
+					<dl>
+						<dt>库存:</dt>
+						<dd>${liststock.stock} </dd>
+					</dl>
+					
+				</div>
+				
 				<dl>
 					<dt>数量:</dt>
 					<dd><input type="text" name="text" class="text" value="" /></dd>
@@ -61,14 +77,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			data : {
 				text : text
 			},
+			 
 			traditional : true,
 			success : function(data) {
+				
 				alert("成功");
 				$(".info").show();
-				window.location.reload();
+				//window.location.reload();
+				
 			},
 			error : function(data) {
+				alert(data);
 				alert("失败");
+				
 			}
 		});
 	});

@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="list">
 				<ul>
 					<li class="list_add">
-						<a href="product/stock_in">入库</a>
+						<a href="product/stock_ins">入库</a>
 					</li>
 					<li>
 						<a href="product/stock_out">出库</a>	
