@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.5" 
-	xmlns="http://java.sun.com/xml/ns/javaee" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-  <display-name></display-name>	
-  <!-- spring hibernate -->
+	<display-name></display-name>
+	<!-- spring hibernate -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:spring.xml,classpath:spring-hibernate.xml</param-value>
 	</context-param>
+
+	<!--<filter>
+		<filter-name>shiroFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+		<init-param>-->
+			<!-- 该值缺省为false,表示生命周期由SpringApplicationContext管理, 设置为true则表示由ServletContainer管理 -->
+			<!--  <param-name>targetFilterLifecycle</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>shiroFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping> -->
+
 	<!-- openSessionInView配置 -->
 	<filter>
 		<filter-name>openSessionInViewFilter</filter-name>
@@ -20,8 +34,7 @@
 		</init-param>
 	</filter>
 	<!--spring mvc 配置 -->
-	<!-- Spring提供的前端控制器，所有的请求都有经过它来统一分发,
-	    Controller之前，需要借助于Spring提供的HandlerMapping定位到具体的Controller -->
+	<!-- Spring提供的前端控制器，所有的请求都有经过它来统一分发, Controller之前，需要借助于Spring提供的HandlerMapping定位到具体的Controller -->
 	<servlet>
 		<servlet-name>springMVC</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -37,12 +50,8 @@
 		<url-pattern>/</url-pattern> <!-- 会拦截/的请求。 -->
 	</servlet-mapping>
 
-	<!-- InitServlet 
-	<servlet>
-		<servlet-name>initServlet</servlet-name>
-		<servlet-class>org.lh.web.InitServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>-->
+	<!-- InitServlet <servlet> <servlet-name>initServlet</servlet-name> <servlet-class>org.lh.web.InitServlet</servlet-class> 
+		<load-on-startup>1</load-on-startup> </servlet> -->
 
 	<!-- 打开session -->
 	<filter>
@@ -76,17 +85,11 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	
-	<!-- 分页 
-	<filter>
-		<filter-name>SystemContextFilter</filter-name>
-		<filter-class>org.lh.web.SystemContextFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>SystemContextFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>-->
-	
+
+	<!-- 分页 <filter> <filter-name>SystemContextFilter</filter-name> <filter-class>org.lh.web.SystemContextFilter</filter-class> 
+		</filter> <filter-mapping> <filter-name>SystemContextFilter</filter-name> 
+		<url-pattern>/*</url-pattern> </filter-mapping> -->
+
 	<!-- dwr -->
 	<servlet-mapping>
 		<servlet-name>springMVC</servlet-name>

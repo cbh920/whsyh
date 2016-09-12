@@ -14,7 +14,7 @@
  
 	<!-- 注解扫描包 -->
 	<context:component-scan base-package="wx.whsyh.controller" />
- 
+ 	
 	<!-- <context:component-scan /> -->
 	<!-- 扫描指定的包中的类上的注解，常用的注解有： -->
 	<!-- @Controller 声明Action组件 -->

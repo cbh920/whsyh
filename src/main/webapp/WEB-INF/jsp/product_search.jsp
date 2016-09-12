@@ -41,13 +41,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<option value="对讲机">对讲机</option>
 							
 					</select>
-					<select name="goods_page" class="goods_page">
-							<option value="1">每页显示</option>
-							<option value="2">10</option>
-							<option value="2">20</option>
-							<option value="3">50</option>
-					</select>
-					
 						<input type="text" name="search_text" id="search_text" value="" />
 						<input type="submit" name="search" id="search" value="查找" />
 					</form>
