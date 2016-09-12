@@ -46,7 +46,13 @@ public class MemberController {
 			pageNo = "1";
 		}
 		
-		Page page = MemberService.findMembers(Integer.valueOf(pageNo), 10);
+		String page_size = request.getParameter("goods_page");
+		if(page_size==null || page_size.equals(""))
+		{
+			page_size = "10";
+		}
+		
+		Page page = MemberService.findMembers(Integer.valueOf(pageNo), Integer.valueOf(page_size));
 		request.setAttribute("page", page);
 		List<Member> list = page.getList();
 		model.addAttribute("members",list);
@@ -124,15 +130,12 @@ public class MemberController {
 		
 		Member Member = MemberService.listById(id);
 		
-//		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-//		Member.setCreate_date(df.format(new Date())+"");
-		
 		Member.setName(p.getName());
 		Member.setPassword(p.getPassword());
 		Member.setEmail(p.getEmail());
 		Member.setNick_name(p.getNick_name());
 		Member.setMember_garde(p.getMember_garde());
-		//Member.setCreate_date(p.getCreate_date());
+
 		if(fileName!="")
 		{
 			Member.setImg_url(request.getContextPath()+"/upload/"+fileName);
@@ -165,4 +168,5 @@ public class MemberController {
 		model.addAttribute("show", MemberService.listById(id));
 		return "/member_show";
 	}
+	
 }
