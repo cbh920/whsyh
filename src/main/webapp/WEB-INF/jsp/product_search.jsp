@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="head">
 				<a>首页</a>
 				<span>商品管理</span>
-				<span>(共40条记录)</span>
+				<span>(共${page.totalRecords}条记录)</span>
 			</div>
 			<div class="list">
 				<ul>
@@ -32,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 					</li>
 					<li><a href="javascript:" id="deleteBtn">删除</a></li>
-					<li>刷新</li>
+					<li><a href="javascript:window.location.reload()">刷新</a></li>
 					<form action="product/list_name" method="post">
 					<select name="goods" class="goods_select left">
 							<option value="商品筛选">商品筛选</option>

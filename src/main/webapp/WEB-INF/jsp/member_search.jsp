@@ -22,8 +22,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="container">
 			<div class="head">
 				<a>首页</a>
-				<span>商品管理</span>
-				<span>(共40条记录)</span>
+				<span>会员管理</span>
+				<span>(共${page.totalRecords}条记录)</span>
 			</div>
 			<div class="list">
 				<ul>
@@ -34,6 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<li><a href="javascript:" id="deleteBtn">删除</a></li>
 					<li>刷新</li>
 					<form action="member/list_name" method="post">
+					
 					<select name="member_type" class="goods_select left">
 							<option value="会员等级">会员等级</option>
 							<option value="青铜用户">青铜用户</option>
@@ -42,12 +43,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<option value="铂金用户">铂金用户</option>
 							<option value="钻石用户">钻石用户</option>
 							
-					</select>
-					<select name="goods_page" class="goods_page">
-							<option value="1">每页显示</option>
-							<option value="2">10</option>
-							<option value="2">20</option>
-							<option value="3">50</option>
 					</select>
 					
 						<input type="text" name="search_text" id="search_text" value="" />
