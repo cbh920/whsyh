@@ -44,7 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</ul>
 			</div>
 			<div class="content">
-			<form action="member/add_member" method="post">
+			<form action="member/add_member" method="post" enctype="multipart/form-data">
 				<div class="table" myAttr="usermess" style="display: block;">
 					<dl>
 						<dt>用户名：</dt>

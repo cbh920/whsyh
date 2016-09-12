@@ -61,10 +61,25 @@ public class MemberController {
 		
 	}
 	@RequestMapping(value="/add_member",method=RequestMethod.POST)
-	public String add(@Valid Member p,Model model)
+	public String add(@Valid Member p,Model model,@RequestParam(value="file",required=false) MultipartFile file,HttpServletRequest request)
 	{ 
+		String path = request.getSession().getServletContext().getRealPath("upload");  
+		String fileName = file.getOriginalFilename();  
+		File targetFile = new File(path, fileName);  
+		if(!targetFile.exists()){  
+			targetFile.mkdirs();  
+		}  
+
+		try {  
+			file.transferTo(targetFile);  
+		} catch (Exception e) {  
+			e.printStackTrace();  
+		}
+		
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
 		p.setCreate_date(df.format(new Date())+"");
+		
+		p.setImg_url(request.getContextPath()+"/upload/"+fileName);
 		
 		MemberService.addMember(p);
 		return "redirect:/member/members.do";
