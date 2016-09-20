@@ -16,24 +16,24 @@ import wx.whsyh.service.MemberServiceI;
 @Transactional
 public class MemberService implements MemberServiceI {
 
-	private MemberDaoI MemberDao;
+	private MemberDaoI memberDao;
 	
 	public MemberDaoI getMemberDao() {
-		return MemberDao;
+		return memberDao;
 	}
 
 	@Autowired
-	public void setMemberDao(MemberDaoI MemberDao) {
-		this.MemberDao = MemberDao;
+	public void setMemberDao(MemberDaoI memberDao) {
+		this.memberDao = memberDao;
 	}
 
 	@SuppressWarnings({ "unused", "rawtypes", "unchecked" })
 	@Override
 	public Page<Member> findMembers(int currentPage,int pageSize) {
 		Page page = new Page();
-		int allCount = MemberDao.getAllCount();
+		int allCount = memberDao.getAllCount();
 		int offset=page.countOffset(currentPage, pageSize);
-		List<Member> list = MemberDao.findMembers(offset, pageSize);
+		List<Member> list = memberDao.findMembers(offset, pageSize);
         page.setPageNo(currentPage);
         page.setPageSize(pageSize);
         page.setTotalRecords(allCount);
@@ -43,43 +43,48 @@ public class MemberService implements MemberServiceI {
 	
 	@Override
 	public void addMember(Member p) {
-		MemberDao.addMember(p);
+		memberDao.addMember(p);
 	}
 	
 	@Override
 	public void deleteMember(Integer id) {
 		if(id!=null)
 		{
-			MemberDao.deleteMember(id);
+			memberDao.deleteMember(id);
 		}	
 	}
 	
 	@Override
 	public void updateMember(Member p) {
-		MemberDao.updateMember(p);
+		memberDao.updateMember(p);
 	}
 
 	@Override
 	public Member listById(int id) {
 		// TODO Auto-generated method stub
-		return MemberDao.listById(id);
+		return memberDao.listById(id);
 	}
 
 	@Override
 	public List<Member> listByName(String name) {
 		// TODO Auto-generated method stub
-		return MemberDao.listByName(name);
+		return memberDao.listByName(name);
 	}
 
 	@Override
 	public List<Member> listByType(String member_type) {
 		// TODO Auto-generated method stub
-		return MemberDao.listByType(member_type);
+		return memberDao.listByType(member_type);
 	}
 
 	@Override
 	public List<Member> listTypeAndName(String name, String member_type) {
 		// TODO Auto-generated method stub
-		return MemberDao.listTypeAndName(name, member_type);
+		return memberDao.listTypeAndName(name, member_type);
+	}
+
+	@Override
+	public List<Member> login(String username, String password) {
+		return memberDao.login(username, password);
 	}
 }

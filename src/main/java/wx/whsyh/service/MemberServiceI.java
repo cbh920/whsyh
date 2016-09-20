@@ -22,4 +22,6 @@ public interface MemberServiceI {
 	public List<Member> listByType(String member_type);
 	
 	public List<Member> listTypeAndName(String name,String member_type);
+	
+	public List<Member> login(String username,String password);
 }

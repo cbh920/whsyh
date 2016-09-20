@@ -1,12 +1,14 @@
 package wx.whsyh.controller;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.alibaba.fastjson.JSONObject;
+
+import wx.basic.util.JSONUtil;
 import wx.basic.util.Page;
 import wx.whsyh.model.Member;
 import wx.whsyh.model.Product;
@@ -27,15 +32,15 @@ import wx.whsyh.service.MemberServiceI;
 @RequestMapping("/member")
 public class MemberController {
 	
-	private MemberServiceI MemberService;
+	private MemberServiceI memberService;
 
 	public MemberServiceI getMemberService() {
-		return MemberService;
+		return memberService;
 	}
 
 	@Autowired
-	public void setMemberService(MemberServiceI MemberService) {
-		this.MemberService = MemberService;
+	public void setMemberService(MemberServiceI memberService) {
+		this.memberService = memberService;
 	}
 
 	@RequestMapping("/members.do")
@@ -52,7 +57,7 @@ public class MemberController {
 			page_size = "10";
 		}
 		
-		Page page = MemberService.findMembers(Integer.valueOf(pageNo), Integer.valueOf(page_size));
+		Page page = memberService.findMembers(Integer.valueOf(pageNo), Integer.valueOf(page_size));
 		request.setAttribute("page", page);
 		List<Member> list = page.getList();
 		model.addAttribute("members",list);
@@ -87,7 +92,7 @@ public class MemberController {
 		
 		p.setImg_url(request.getContextPath()+"/upload/"+fileName);
 		
-		MemberService.addMember(p);
+		memberService.addMember(p);
 		return "redirect:/member/members.do";
 		
 	}
@@ -99,7 +104,7 @@ public class MemberController {
 
 		for(int i=0;i<ids.length;i++)
 		{
-			MemberService.deleteMember(Integer.valueOf(ids[i]));
+			memberService.deleteMember(Integer.valueOf(ids[i]));
 		}
 
 		return "redirect:/member/members.do";
@@ -108,7 +113,7 @@ public class MemberController {
 	@RequestMapping(value="/updata/{id}")
 	public String update(@PathVariable int id,Model model){
 		
-		model.addAttribute("p", MemberService.listById(id));
+		model.addAttribute("p", memberService.listById(id));
 		return "/member_updata";
 	}
 	@RequestMapping(value="/updata_member/{id}",method=RequestMethod.POST)
@@ -128,7 +133,7 @@ public class MemberController {
 			e.printStackTrace();  
 		} 
 		
-		Member Member = MemberService.listById(id);
+		Member Member = memberService.listById(id);
 		
 		Member.setName(p.getName());
 		Member.setPassword(p.getPassword());
@@ -140,7 +145,7 @@ public class MemberController {
 		{
 			Member.setImg_url(request.getContextPath()+"/upload/"+fileName);
 		}
-		MemberService.updateMember(Member);
+		memberService.updateMember(Member);
 		return "redirect:/member/members.do";
 	}
 	@RequestMapping(value="/list_name",method=RequestMethod.POST)
@@ -150,14 +155,14 @@ public class MemberController {
 		String name = request.getParameter("search_text");
 		if(member_type.equals("会员等级"))
 		{
-			model.addAttribute("listname", MemberService.listByName(name));
+			model.addAttribute("listname", memberService.listByName(name));
 		}
 		else if(name.equals(""))
 		{
-			model.addAttribute("listname", MemberService.listByType(member_type));
+			model.addAttribute("listname", memberService.listByType(member_type));
 		}
 		else{
-			model.addAttribute("listname", MemberService.listTypeAndName(name, member_type));
+			model.addAttribute("listname", memberService.listTypeAndName(name, member_type));
 		}
 		return "/member_search";
 	}
@@ -165,8 +170,45 @@ public class MemberController {
 	@RequestMapping(value="/show/{id}")
 	public String show(@PathVariable int id,Model model){
 
-		model.addAttribute("show", MemberService.listById(id));
+		model.addAttribute("show", memberService.listById(id));
 		return "/member_show";
 	}
-	
+	@RequestMapping(value="/login",method=RequestMethod.POST)
+	public String login(HttpServletRequest request,
+			HttpServletResponse response){
+		String msg = "eroor";
+		String username = request.getParameter("username");
+		String password = request.getParameter("userpwd");
+		try{
+			List<Member> members = memberService.login(username, password);
+			if (members != null && !members.equals("")) {
+				JSONObject json = new JSONObject();
+				json.put("list", JSONUtil.output4ajax(new Object[] { members }));
+				msg = json.toString();
+				System.out.println(msg);
+			} else {
+				msg = "none";
+				System.out.println("查询失败！！！");
+			}
+
+			response.setContentType("text/json; charset=utf-8");
+			response.setCharacterEncoding("utf-8");
+			PrintWriter out = response.getWriter();
+			out.print(msg);
+			out.flush();
+			out.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "success";
+	}
+
+	@RequestMapping(value="/member_message",method=RequestMethod.POST)
+	public String member_message()
+	{
+		Page page= memberService.findMembers(0, 5);
+		List<Member> list = page.getList();
+		return null;
+		
+	}
 }

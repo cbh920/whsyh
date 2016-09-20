@@ -111,9 +111,17 @@ public class MemberDao extends BaseDao<Member> implements MemberDaoI {
 
 	@Override
 	public int getAllCount() {
-		// TODO Auto-generated method stub
 		int count=((Long) getSession().createQuery( "select count(*) from Member").iterate().next()).intValue();
         return count;
+	}
+
+	@Override
+	public List<Member> login(String username, String password) {
+		String hql = "from Member as m where m.name=? and m.password=?";
+		Query query = this.getSession().createQuery(hql);
+		query.setParameter(0, username);
+		query.setParameter(1, password);
+		return query.list();
 	}
 
 
