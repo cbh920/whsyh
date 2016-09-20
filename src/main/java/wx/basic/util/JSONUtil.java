@@ -30,7 +30,7 @@ public class JSONUtil {
 	}
 	/**
 	 * List中的单个对象，不带对象名
-	 * 
+	 *kk
 	 * @author vector
 	 * @param o
 	 * @return

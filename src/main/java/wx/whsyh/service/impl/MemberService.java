@@ -83,6 +83,7 @@ public class MemberService implements MemberServiceI {
 		return memberDao.listTypeAndName(name, member_type);
 	}
 
+	//app
 	@Override
 	public List<Member> login(String username, String password) {
 		return memberDao.login(username, password);

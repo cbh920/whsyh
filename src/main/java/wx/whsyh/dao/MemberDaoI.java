@@ -25,5 +25,6 @@ public interface MemberDaoI extends BaseDaoI<Member> {
 	
 	public int getAllCount();
 	
+	//app
 	public List<Member> login(String username,String password);
 }

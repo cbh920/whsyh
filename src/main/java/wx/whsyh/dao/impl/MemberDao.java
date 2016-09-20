@@ -115,6 +115,7 @@ public class MemberDao extends BaseDao<Member> implements MemberDaoI {
         return count;
 	}
 
+	//app
 	@Override
 	public List<Member> login(String username, String password) {
 		String hql = "from Member as m where m.name=? and m.password=?";

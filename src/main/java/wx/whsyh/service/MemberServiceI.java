@@ -23,5 +23,6 @@ public interface MemberServiceI {
 	
 	public List<Member> listTypeAndName(String name,String member_type);
 	
+	//app
 	public List<Member> login(String username,String password);
 }

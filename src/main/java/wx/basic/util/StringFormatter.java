@@ -131,6 +131,7 @@ public class StringFormatter
         }
     }
 
+    //
     public static BigDecimal parseDecimal(Object object)
     {
         try
