@@ -141,6 +141,7 @@ public class MemberController {
 		Member.setNick_name(p.getNick_name());
 		Member.setMember_garde(p.getMember_garde());
 
+		//
 		if(fileName!="")
 		{
 			Member.setImg_url(request.getContextPath()+"/upload/"+fileName);
