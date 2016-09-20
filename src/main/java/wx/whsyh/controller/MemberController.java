@@ -1,6 +1,7 @@
 package wx.whsyh.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
@@ -31,7 +32,7 @@ import wx.whsyh.service.MemberServiceI;
 @Controller
 @RequestMapping("/member")
 public class MemberController {
-	
+
 	private MemberServiceI memberService;
 
 	public MemberServiceI getMemberService() {
@@ -50,26 +51,26 @@ public class MemberController {
 		if (pageNo == null) {
 			pageNo = "1";
 		}
-		
+
 		String page_size = request.getParameter("goods_page");
 		if(page_size==null || page_size.equals(""))
 		{
 			page_size = "10";
 		}
-		
+
 		Page page = memberService.findMembers(Integer.valueOf(pageNo), Integer.valueOf(page_size));
 		request.setAttribute("page", page);
 		List<Member> list = page.getList();
 		model.addAttribute("members",list);
 		return "/usermanager";
 	}
-	
-	
+
+
 	@RequestMapping(value="/add",method=RequestMethod.GET)
 	public String addMember()
 	{
 		return "/user_add";
-		
+
 	}
 	@RequestMapping(value="/add_member",method=RequestMethod.POST)
 	public String add(@Valid Member p,Model model,@RequestParam(value="file",required=false) MultipartFile file,HttpServletRequest request)
@@ -86,17 +87,17 @@ public class MemberController {
 		} catch (Exception e) {  
 			e.printStackTrace();  
 		}
-		
+
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
 		p.setCreate_date(df.format(new Date())+"");
-		
+
 		p.setImg_url(request.getContextPath()+"/upload/"+fileName);
-		
+
 		memberService.addMember(p);
 		return "redirect:/member/members.do";
-		
+
 	}
-	
+
 	@RequestMapping(value="/delete",method=RequestMethod.GET)
 	public String delete(HttpServletRequest request,Model model)
 	{
@@ -109,10 +110,10 @@ public class MemberController {
 
 		return "redirect:/member/members.do";
 	}
-	
+
 	@RequestMapping(value="/updata/{id}")
 	public String update(@PathVariable int id,Model model){
-		
+
 		model.addAttribute("p", memberService.listById(id));
 		return "/member_updata";
 	}
@@ -132,9 +133,9 @@ public class MemberController {
 		} catch (Exception e) {  
 			e.printStackTrace();  
 		} 
-		
+
 		Member Member = memberService.listById(id);
-		
+
 		Member.setName(p.getName());
 		Member.setPassword(p.getPassword());
 		Member.setEmail(p.getEmail());
@@ -167,16 +168,22 @@ public class MemberController {
 		}
 		return "/member_search";
 	}
-	
+
 	@RequestMapping(value="/show/{id}")
 	public String show(@PathVariable int id,Model model){
 
 		model.addAttribute("show", memberService.listById(id));
 		return "/member_show";
 	}
+
+	/**
+	 * 前台登陆
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping(value="/login",method=RequestMethod.POST)
-	public String login(HttpServletRequest request,
-			HttpServletResponse response){
+	public String login(HttpServletRequest request,HttpServletResponse response){
 		String msg = "eroor";
 		String username = request.getParameter("username");
 		String password = request.getParameter("userpwd");
@@ -191,7 +198,6 @@ public class MemberController {
 				msg = "none";
 				System.out.println("查询失败！！！");
 			}
-
 			response.setContentType("text/json; charset=utf-8");
 			response.setCharacterEncoding("utf-8");
 			PrintWriter out = response.getWriter();
@@ -204,12 +210,32 @@ public class MemberController {
 		return "success";
 	}
 
-	@RequestMapping(value="/member_message",method=RequestMethod.POST)
-	public String member_message()
+	/**
+	 * 前台注册
+	 * @return
+	 * @throws IOException 
+	 */
+	@RequestMapping(value="/register",method=RequestMethod.POST)
+	public void register(HttpServletRequest request,HttpServletResponse response) throws IOException
 	{
-		Page page= memberService.findMembers(0, 5);
-		List<Member> list = page.getList();
-		return null;
+
+		String msg = "eroor";
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		String email = request.getParameter("email");
+		String phone = request.getParameter("phone");
 		
+		Member member = new Member();
+		member.setEmail(email);
+		member.setName(username);
+		member.setPassword(password);
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+		member.setCreate_date(df.format(new Date())+"");
+		memberService.addMember(member);
+		
+		PrintWriter out = response.getWriter();
+		out.print(msg);
+		out.flush();
+		out.close();
 	}
 }
