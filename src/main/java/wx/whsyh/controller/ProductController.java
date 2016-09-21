@@ -1,12 +1,15 @@
 package wx.whsyh.controller;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +22,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.alibaba.fastjson.JSONObject;
 import com.sun.mail.iap.Response;
 
+import wx.basic.util.JSONUtil;
 import wx.basic.util.Page;
 import wx.whsyh.model.Product;
 import wx.whsyh.service.ProductServiceI;
@@ -215,6 +220,33 @@ public class ProductController {
 		return "redirect:/product/stock_ins";
 		
 		//return "/stock_in";
+	}
+	
+	/**
+	 * 前台操作
+	 * @throws IOException 
+	 */
+	@RequestMapping(value="/list_by_product",method=RequestMethod.POST)
+	public void listByProduct(HttpServletRequest request,HttpServletResponse response) throws IOException
+	{
+		String msg="error";
+		String search_name = request.getParameter("search_name");
+		List<Product> list = productService.listByName(search_name);
+		if (list != null && !list.equals("")) {
+			JSONObject json = new JSONObject();
+			json.put("list_search", JSONUtil.output4ajax(new Object[] { list }));
+			msg = json.toString();
+			System.out.println(msg);
+		} else {
+			msg = "none";
+			System.out.println("查询失败！！！");
+		}
+		response.setContentType("text/json; charset=utf-8");
+		response.setCharacterEncoding("utf-8");
+		PrintWriter out = response.getWriter();
+		out.print(msg);
+		out.flush();
+		out.close();
 	}
 
 }
