@@ -7,6 +7,7 @@ import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -52,7 +53,7 @@ public class ProductController {
 		if (pageNo == null) {
 			pageNo = "1";
 		}
-		
+
 		String page_size = request.getParameter("page_size");
 		if(page_size==null || page_size.equals(""))
 		{
@@ -89,6 +90,13 @@ public class ProductController {
 		} catch (Exception e) {  
 			e.printStackTrace();  
 		}  
+
+		Random random = new Random();
+		String result="";
+		for(int i=0;i<6;i++){
+			result+=random.nextInt(10);
+		}
+		p.setCoding(result);
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
 		p.setCreate_date(df.format(new Date())+"");
 		p.setImg_url(request.getContextPath()+"/upload/"+fileName);
@@ -162,7 +170,6 @@ public class ProductController {
 		Product product = productService.listById(id);
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
 		product.setCreate_date(df.format(new Date())+"");
-		product.setCoding(p.getCoding());
 		product.setIs_putaway(p.getIs_putaway());
 		product.setName(p.getName());
 		product.setProduct_type(p.getProduct_type());
@@ -174,8 +181,8 @@ public class ProductController {
 		productService.updateProduct(product);
 		return "redirect:/product/products.do";
 	}
-	
-	
+
+
 	@RequestMapping(value="/stock")
 	public String jump_stock(Model model,HttpServletRequest request)
 	{
@@ -183,7 +190,7 @@ public class ProductController {
 		if (pageNo == null) {
 			pageNo = "1";
 		}
-		
+
 		String page_size = request.getParameter("page_size");
 		if(page_size==null || page_size.equals(""))
 		{
@@ -212,17 +219,17 @@ public class ProductController {
 	@RequestMapping(value="/stock_search",method=RequestMethod.POST)
 	public String stockByName(HttpServletRequest request,Model model) throws UnsupportedEncodingException
 	{
-		
+
 		String name = request.getParameter("text");
-		
+
 		int stockLength=productService.listByName(name).size();
 		model.addAttribute("liststock", productService.listByName(name));
-		
+
 		return "redirect:/product/stock_ins";
-		
+
 		//return "/stock_in";
 	}
-	
+
 	/**
 	 * 前台操作
 	 * @throws IOException 
