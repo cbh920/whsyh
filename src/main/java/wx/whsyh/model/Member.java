@@ -22,6 +22,7 @@ public class Member {
 	private String img_url;
 	private String address;
 	private String phone;
+	private String sex;
 	private List<Order> order;//一个会员对应多个订单
 	
 	
@@ -100,22 +101,29 @@ public class Member {
 		this.order = order;
 	}
 	
-	public Member(int id,String name,String password, 
-			String email,String nick_name,String member_garde,String create_date, String img_url,String address,String phone ) {
-		
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+	public Member(int id, String name, String password, String email,
+			String nick_name, String member_garde, String create_date,
+			String img_url, String address, String phone, String sex,
+			List<Order> order) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.password=password;
-		this.email=email;
-		this.nick_name=nick_name;
-		this.member_garde=member_garde;
+		this.password = password;
+		this.email = email;
+		this.nick_name = nick_name;
+		this.member_garde = member_garde;
 		this.create_date = create_date;
 		this.img_url = img_url;
 		this.address = address;
 		this.phone = phone;
+		this.sex = sex;
+		this.order = order;
 	}
 	
-
-
 }

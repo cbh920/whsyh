@@ -88,4 +88,9 @@ public class MemberService implements MemberServiceI {
 	public List<Member> login(String username, String password) {
 		return memberDao.login(username, password);
 	}
+
+	@Override
+	public List<Member> listByWholeName(String name) {
+		return memberDao.listByWholeName(name);
+	}
 }

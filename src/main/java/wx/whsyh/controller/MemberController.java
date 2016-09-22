@@ -252,7 +252,7 @@ public class MemberController {
 		String msg = "error";
 		String name = request.getParameter("name");
 		try{
-			List<Member> member = memberService.listByName(name);
+			List<Member> member = memberService.listByWholeName(name);
 			if (member != null && !member.equals("")) {
 				JSONObject json = new JSONObject();
 				msg=JSONArray.toJSONString(member).toString();

@@ -125,6 +125,15 @@ public class MemberDao extends BaseDao<Member> implements MemberDaoI {
 		return query.list();
 	}
 
+	@Override
+	public List<Member> listByWholeName(String name) {
+		Session session = this.getSession();
+		String hql="from Member as m where m.name=?";
+		Query query= session.createQuery(hql);
+		query.setParameter(0, name);
+		return query.list();
+	}
+
 
 
 }
