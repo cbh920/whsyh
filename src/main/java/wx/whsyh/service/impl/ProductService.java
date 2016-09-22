@@ -77,5 +77,10 @@ public class ProductService implements ProductServiceI {
 	public List<Product> listByType(String type) {
 		return productDao.listByType(type);
 	}
+
+	@Override
+	public List<Product> listByWholeName(String name) {
+		return productDao.listByWholeName(name);
+	}
 	
 }

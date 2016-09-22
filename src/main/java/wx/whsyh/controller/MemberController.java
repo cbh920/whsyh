@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 import wx.basic.util.JSONUtil;
@@ -191,8 +192,7 @@ public class MemberController {
 			List<Member> members = memberService.login(username, password);
 			if (members != null && !members.equals("")) {
 				JSONObject json = new JSONObject();
-				json.put("list", JSONUtil.output4ajax(new Object[] { members }));
-				msg = json.toString();
+				msg=JSONArray.toJSONString(members).toString();
 				System.out.println(msg);
 			} else {
 				msg = "none";
@@ -242,4 +242,34 @@ public class MemberController {
 		out.flush();
 		out.close();
 	}
+	
+	/**
+	 * 前台查询个人信息
+	 */
+	@RequestMapping(value="/showInfo",method=RequestMethod.POST)
+	public void showInfo(HttpServletRequest request,HttpServletResponse response)
+	{
+		String msg = "error";
+		String name = request.getParameter("name");
+		try{
+			List<Member> member = memberService.listByName(name);
+			if (member != null && !member.equals("")) {
+				JSONObject json = new JSONObject();
+				msg=JSONArray.toJSONString(member).toString();
+				System.out.println(msg);
+			} else {
+				msg = "error";
+				System.out.println("查询失败！！！");
+			}
+			response.setContentType("text/json; charset=utf-8");
+			response.setCharacterEncoding("utf-8");
+			PrintWriter out = response.getWriter();
+			out.print(msg);
+			out.flush();
+			out.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
 }

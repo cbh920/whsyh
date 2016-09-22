@@ -25,7 +25,7 @@
 <body>
 	<div class="container">
 		<div class="head">
-			<a>首页</a> <span>商品管理</span> <span>(共${page.totalRecords}条记录)</span>
+			<a>首页</a>》 <span>商品管理</span> <span>(共${page.totalRecords}条记录)</span>
 		</div>
 		<div class="list">
 			<ul>

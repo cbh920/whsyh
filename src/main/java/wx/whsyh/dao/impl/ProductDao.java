@@ -108,5 +108,14 @@ public class ProductDao extends BaseDao<Product> implements ProductDaoI {
 		int count=((Long) getSession().createQuery( "select count(*) from Product").iterate().next()).intValue();
         return count;  
 	}
+
+	@Override
+	public List<Product> listByWholeName(String name) {
+		Session session = this.getSession();
+		String hql="from Product as p where p.name=?";
+		Query query= session.createQuery(hql);
+		query.setParameter(0, name);
+		return query.list();
+	}
 	
 }

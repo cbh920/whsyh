@@ -223,10 +223,9 @@ public class ProductController {
 	{
 
 		String name = request.getParameter("text");
-
-		int stockLength=productService.listByName(name).size();
-		model.addAttribute("liststock", productService.listByName(name));
-
+		List<Product> list = productService.listByWholeName(name);
+		model.addAttribute("liststock", list);
+		System.out.println(productService.listByWholeName(name));
 		return "redirect:/product/stock_ins";
 
 		//return "/stock_in";
