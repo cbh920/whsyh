@@ -59,7 +59,7 @@
 						<dt>名称：</dt>
 						<dd>
 							<input type="text" name="name" class="text" value=""
-								maxlength="10" />
+								maxlength="20" />
 						</dd>
 					</dl>
 					<dl>

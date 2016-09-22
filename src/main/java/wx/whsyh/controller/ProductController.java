@@ -172,6 +172,8 @@ public class ProductController {
 		product.setCreate_date(df.format(new Date())+"");
 		product.setIs_putaway(p.getIs_putaway());
 		product.setName(p.getName());
+		product.setTitle(p.getTitle());
+		product.setContent(p.getContent());
 		product.setProduct_type(p.getProduct_type());
 		product.setSale_price(p.getSale_price());
 		if(fileName!="")

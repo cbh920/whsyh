@@ -70,7 +70,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<dl>
 						<dt>密码：</dt>
 						<dd>
-							<input type="text" name="password" id="password" value="" />
+							<input type="password" name="password" id="password" value="" />
 							
 						</dd>
 						

@@ -51,13 +51,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<dl>
 						<dt>名称：</dt>
 						<dd>
-							<input type="text" name="name" class="text" value="${p.name }" />
+							<input type="text" name="name" class="text" value="${p.name }" maxlength="20" />
 						</dd>
 					</dl>
 					<dl>
 						<dt>销售价：</dt>
 						<dd>
-							<input type="text" name="sale_price" class="text" value="${p.sale_price }" />
+							<input type="text" name="sale_price" class="text" value="${p.sale_price }" maxlength="6"
+								onkeyup="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')"/>
+						</dd>
+					</dl>
+					<dl>
+						<dt>标题：</dt>
+						<dd>
+							<input type="text" name="title" class="text" value="${p.title }" />
+						</dd>
+					</dl>
+					<dl style="height:130px;">
+						<dt>内容：</dt>
+						<dd>
+							<textarea rows="8" cols="29" name="content" >${p.content }</textarea>
 						</dd>
 					</dl>
 					<dl>

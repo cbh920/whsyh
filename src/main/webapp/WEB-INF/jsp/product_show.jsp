@@ -52,6 +52,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<dd>${show.sale_price }</dd>
 				</dl>
 				<dl>
+					<dt>标题：</dt>
+					<dd>${show.title }</dd>
+				</dl>
+				<dl>
+					<dt>内容：</dt>
+					<dd>${show.content }</dd>
+				</dl>
+				<dl>
 					<dt>创建时间：</dt>
 					<dd>${show.create_date }</dd>
 				</dl>
