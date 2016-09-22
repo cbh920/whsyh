@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.sun.mail.iap.Response;
 
@@ -234,11 +235,10 @@ public class ProductController {
 		List<Product> list = productService.listByName(search_name);
 		if (list != null && !list.equals("")) {
 			JSONObject json = new JSONObject();
-			json.put("list_search", JSONUtil.output4ajax(new Object[] { list }));
-			msg = json.toString();
+			msg=JSONArray.toJSONString(list).toString();
 			System.out.println(msg);
 		} else {
-			msg = "none";
+			msg = "error";
 			System.out.println("查询失败！！！");
 		}
 		response.setContentType("text/json; charset=utf-8");

@@ -207,7 +207,7 @@ public class MemberController {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		return "success";
+		return null;
 	}
 
 	/**
