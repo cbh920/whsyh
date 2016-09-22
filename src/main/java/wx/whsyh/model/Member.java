@@ -20,6 +20,8 @@ public class Member {
 	private String member_garde;
 	private String create_date;
 	private String img_url;
+	private String address;
+	private String phone;
 	private List<Order> order;//一个会员对应多个订单
 	
 	
@@ -42,6 +44,18 @@ public class Member {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String adress) {
+		this.address = adress;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	public String getEmail() {
 		return email;
@@ -87,7 +101,7 @@ public class Member {
 	}
 	
 	public Member(int id,String name,String password, 
-			String email,String nick_name,String member_garde,String create_date, String img_url) {
+			String email,String nick_name,String member_garde,String create_date, String img_url,String address,String phone ) {
 		
 		super();
 		this.id = id;
@@ -98,6 +112,8 @@ public class Member {
 		this.member_garde=member_garde;
 		this.create_date = create_date;
 		this.img_url = img_url;
+		this.address = address;
+		this.phone = phone;
 	}
 	
 

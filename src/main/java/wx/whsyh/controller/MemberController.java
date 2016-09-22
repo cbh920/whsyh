@@ -224,11 +224,15 @@ public class MemberController {
 		String password = request.getParameter("password");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
+		String address = request.getParameter("address");
+		
 		
 		Member member = new Member();
 		member.setEmail(email);
 		member.setName(username);
 		member.setPassword(password);
+		member.setAddress(address);
+		member.setPhone(phone);
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
 		member.setCreate_date(df.format(new Date())+"");
 		memberService.addMember(member);
