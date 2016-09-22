@@ -1,7 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
 %>
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -9,19 +11,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html>
 <html>
 <head>
-<base href="<%=basePath %>">
+<base href="<%=basePath%>">
 <meta charset="UTF-8">
 <title></title>
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath() %>/resources/css/product_add.css" />
+	href="<%=request.getContextPath()%>/resources/css/product_add.css" />
 <script
-	src="<%=request.getContextPath() %>/resources/js/jquery-1.8.3.min.js"
+	src="<%=request.getContextPath()%>/resources/js/jquery-1.8.3.min.js"
 	type="text/javascript" charset="utf-8"></script>
-<script src="<%=request.getContextPath() %>/resources/js/product_add.js"
+<script src="<%=request.getContextPath()%>/resources/js/product_add.js"
 	type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-
-		</script>
+	
+</script>
 </head>
 <body>
 	<div class="container">
@@ -38,7 +40,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</ul>
 		</div>
 		<div class="content">
-			<form action="product/add_porduct" method="post" enctype="multipart/form-data">
+			<form action="product/add_porduct" method="post"
+				enctype="multipart/form-data">
 				<div class="table dl_border" myAttr="goods" style="display: block;">
 					<dl>
 						<dt>商品分类：</dt>
@@ -55,13 +58,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<dl>
 						<dt>名称：</dt>
 						<dd>
-							<input type="text" name="name" class="text" value="" maxlength="10" />
+							<input type="text" name="name" class="text" value=""
+								maxlength="10" />
 						</dd>
 					</dl>
 					<dl>
 						<dt>销售价：</dt>
 						<dd>
-							<input type="text" name="sale_price" class="text" value="" maxlength="6" onkeyup="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')"  />
+							<input type="text" name="sale_price" class="text" value=""
+								maxlength="6"
+								onkeyup="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" />
+						</dd>
+					</dl>
+					<dl>
+						<dt>标题：</dt>
+						<dd>
+							<input type="text" name="title" class="text" value="" />
+						</dd>
+					</dl>
+					<dl style="height:130px;">
+						<dt>内容：</dt>
+						<dd>
+							<textarea rows="8" cols="29" name="content"></textarea>
 						</dd>
 					</dl>
 					<dl>
@@ -76,15 +94,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<select name="is_putaway" class="productId">
 								<option value="是">是</option>
 								<option value="否">否</option>
-								
+
 							</select>
 						</dd>
 					</dl>
-						<dt>&nbsp;</dt>
-						<dd>
-							<input type="submit" class="button" value="确 定"> <input
-								type="reset" class="button" value="重 置">
-						</dd>
+					<dt>&nbsp;</dt>
+					<dd>
+						<input type="submit" class="button" value="确 定"> <input
+							type="reset" class="button" value="重 置">
+					</dd>
 					</dl>
 				</div>
 			</form>

@@ -60,6 +60,8 @@
 						<th><a class="sort" name="product_name">名称</a></th>
 						<th><a class="sort" name="productCategory">商品分类</a></th>
 						<th><a class="sort" name="price">销售价</a></th>
+						<th><a class="sort" name="title">标题</a></th>
+						<th><a class="sort" name="content">内容</a></th>
 						<th><a class="sort" name="stock">库存量</a></th>
 						<th><a class="sort" name="isMarketable">是否上架</a></th>
 						<th><a class="sort" name="createDate">创建日期</a></th>
@@ -73,6 +75,8 @@
 							<td><span>${product.name }</span></td>
 							<td><span>${product.product_type }</span></td>
 							<td><span>${product.sale_price }</span></td>
+							<td><span>${product.title }</span></td>
+							<td><span>${product.content }</span></td>
 							<td><span>${product.stock }</span></td>
 							<td><span>${product.is_putaway }</span></td>
 							<td><span>${product.create_date }</span></td>

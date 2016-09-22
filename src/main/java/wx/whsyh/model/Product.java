@@ -27,6 +27,8 @@ public class Product {
 	private String stock;
 	private String stock_in;
 	private String stock_out;
+	private String title;
+	private String content;
 	private List<Order> order;//一个商品对应多个订单
 	
 	public String getStock_in() {
@@ -101,9 +103,31 @@ public class Product {
 		this.order = order;
 	}
 	
+	public Product() {
+		super();
+	}
+	public String getStock() {
+		return stock;
+	}
+	public void setStock(String stock) {
+		this.stock = stock;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
 	public Product(int id, String coding, String name, String product_type,
 			String sale_price, String is_putaway, String create_date,
-			String img_url,String stock,String stock_in,String stock_out) {
+			String img_url, String stock, String stock_in, String stock_out,
+			String title, String content, List<Order> order) {
 		super();
 		this.id = id;
 		this.coding = coding;
@@ -116,17 +140,9 @@ public class Product {
 		this.stock = stock;
 		this.stock_in = stock_in;
 		this.stock_out = stock_out;
+		this.title = title;
+		this.content = content;
+		this.order = order;
 	}
-	public Product() {
-		super();
-	}
-	public String getStock() {
-		return stock;
-	}
-	public void setStock(String stock) {
-		this.stock = stock;
-	}
-	
-	
 	
 }
