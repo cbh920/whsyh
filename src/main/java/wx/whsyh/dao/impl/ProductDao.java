@@ -117,5 +117,14 @@ public class ProductDao extends BaseDao<Product> implements ProductDaoI {
 		query.setParameter(0, name);
 		return query.list();
 	}
+
+	@Override
+	public List<Product> listByAppId(int id) {
+		Session session = this.getSession();
+		String hql="from Product as p where p.id=?";
+		Query query= session.createQuery(hql);
+		query.setParameter(0, id);
+		return query.list();
+	}
 	
 }

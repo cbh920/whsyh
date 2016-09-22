@@ -82,5 +82,11 @@ public class ProductService implements ProductServiceI {
 	public List<Product> listByWholeName(String name) {
 		return productDao.listByWholeName(name);
 	}
+
+	@Override
+	public List<Product> listByAppId(int id) {
+		return productDao.listByAppId(id);
+	}
+	
 	
 }

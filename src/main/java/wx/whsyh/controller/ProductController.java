@@ -256,5 +256,27 @@ public class ProductController {
 		out.flush();
 		out.close();
 	}
+	
+	@RequestMapping(value="/list_product",method=RequestMethod.POST)
+	public void listProduct(HttpServletRequest request,HttpServletResponse response) throws IOException
+	{
+		String msg="error";
+		String id = request.getParameter("id");
+		List<Product> list = productService.listByAppId(Integer.valueOf(id));
+		if (list != null && !list.equals("")) {
+			JSONObject json = new JSONObject();
+			msg=JSONArray.toJSONString(list).toString();
+			System.out.println(msg);
+		} else {
+			msg = "error";
+			System.out.println("查询失败！！！");
+		}
+		response.setContentType("text/json; charset=utf-8");
+		response.setCharacterEncoding("utf-8");
+		PrintWriter out = response.getWriter();
+		out.print(msg);
+		out.flush();
+		out.close();
+	}
 
 }
